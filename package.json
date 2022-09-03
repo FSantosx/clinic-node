@@ -5,11 +5,12 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon app.js"
+    "dev": "concurrently \"nodemon app.js\" \"cd views && npm start\""
   },
   "author": "Fabio Santos",
   "license": "MIT",
   "dependencies": {
+    "concurrently": "^7.3.0",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "md5": "^2.3.0",
