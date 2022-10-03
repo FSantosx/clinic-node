@@ -9,9 +9,9 @@ import {
     Link,
     Stack,
     Image,
+    ChakraProvider, 
 } from '@chakra-ui/react';
-import { ChakraProvider } from '@chakra-ui/react';
-import React, {useState} from 'react';
+import {useState} from 'react';
 
 export default function Login() {
     const [email, setEmail] = useState('');
