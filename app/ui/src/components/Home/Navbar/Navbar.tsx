@@ -17,7 +17,7 @@ import {
   Stack,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
-import Dashboard from '../Dashboard/Dashboard'
+import RDaily from '../Reports/Daily/Daily'
 
 const Links = ['Dashboard', 'Atendimentos', 'Laboratório', 'Recepção', 'relatórios'];
 
@@ -109,7 +109,7 @@ export default function Simple() {
       </Box>
 
       <Box p={4}>
-        <Dashboard />
+        <RDaily />
       </Box>
     </>
   );
