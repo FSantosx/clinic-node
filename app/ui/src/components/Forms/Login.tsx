@@ -31,13 +31,9 @@ export default function Login() {
 
     const handleSubmit = event => {
         console.log('handleSubmit ran');
-        event.preventDefault(); // 👈️ prevent page refresh
-    
-        // 👇️ access input values here
+        event.preventDefault();
         console.log('Email 👉️', email);
         console.log('Password 👉️', password);
-    
-        // 👇️ clear all input values in the form
         setEmail('');
         setPassword('');
     };
