@@ -10,8 +10,6 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const helmet = require('helmet');
-
-
 const logger = require('./util/logger');
 
 // Load .env Enviroment Variables to process.env
@@ -48,8 +46,7 @@ app.use('*', (req, res, next) => {
 
 // Assign Routes
 
-app.use('/', require('./routes/router.js'));
-
+app.use('/api', require('./routes/router.js'));
 
 // Handle errors
 app.use(errorHandler());
