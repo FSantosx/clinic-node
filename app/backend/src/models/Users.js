@@ -5,10 +5,22 @@ const data = new mongoose.Schema({
         required: true
         , type : String
     }, 
-    age : {
+    birthday : {
         required: true
         , type: Number
-    }
+    },
+    email : {
+        required: true
+        , type : String
+    },
+    password : {
+        required: true
+        , type : String
+    },
+    userType : {
+        required: true
+        , type : String
+    },
 })
 
 module.exports = mongoose.model('Users', data);
