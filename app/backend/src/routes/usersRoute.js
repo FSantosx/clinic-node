@@ -1,21 +1,11 @@
 const route = require('express').Router()
 const User = require('../models/User')
 
-
 route.post('/', async (req, res) => {
-    try {
-
-        /*
-            name        :       String,
-            type        :       String,
-            email       :       String,
-            pass        :       String,
-            birthday    :       String,
-            active      :       String 
-        */
-       
+    try {   
         const { name, type, email, pass, birthday, active } = req.body
         const user = { name, type, email, pass, birthday, active };
+        console.log(user)
 
         for (let [key, value] of Object.entries(user)){
             if(value == undefined){

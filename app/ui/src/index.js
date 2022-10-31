@@ -1,12 +1,36 @@
-import React  from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { ChakraProvider } from '@chakra-ui/react';
-import { RouterProvider } from 'react-router-dom'
-import { Router } from './Routes'
+import {
+    BrowserRouter,
+    Routes,
+    Route
+} from "react-router-dom"
+import { Home } from './pages/home/Home';
+import { Login } from './pages/login/Login';
+import { List } from './pages/list/List';
+import { Single } from './pages/single/Single';
+import { New } from './pages/new/New';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <ChakraProvider>
-        <RouterProvider router={Router} />
-    </ChakraProvider>
+  <React.StrictMode>
+    <BrowserRouter>
+        <Routes>
+            <Route path="/">
+                <Route index element={<Home />}/> 
+                <Route path='login' element={<Login />}/>
+                <Route path='users'>
+                    <Route index element={ <List />}/> 
+                    <Route path=':id' element={ <Single />}/> 
+                    <Route path='new' element={ <New />}/> 
+                </Route> 
+                <Route path='patients'>
+                    <Route index element={ <List />}/> 
+                    <Route path=':id' element={ <Single />}/> 
+                    <Route path='new' element={ <New />}/> 
+                </Route> 
+            </Route>
+        </Routes>
+    </BrowserRouter>
+  </React.StrictMode>
 );

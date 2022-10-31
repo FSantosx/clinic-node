@@ -20,8 +20,7 @@ app.use('*', (req, res, next) => {
     next();
 })
 
-mongoose.connect(process.env.DB_STRING)
-.then( () => {
+mongoose.connect(process.env.DB_STRING).then( () => {
     app.use('/api/user',   require('./routes/usersRoute'));
     app.use('/api/person', require('./routes/personRoute'));
     app.listen(port, () => console.log(`Example app listening on port ${port}!`))
