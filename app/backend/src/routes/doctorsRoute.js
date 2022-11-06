@@ -66,7 +66,7 @@ route.patch('/:id', async(req, res) => {
             return
         }
 
-        res.status(200).json(patient)
+        res.status(200).json(doctorUpdated)
     } catch (err) {
         res.status(500).json({ error: err })
     }
@@ -108,7 +108,7 @@ route.patch('/:id/credentials/:idCred', async(req, res) => {
         const { user, active } = req.body
         const password = md5(req.body.password)
        
-        const updatedDoctor = await Patient.updateOne(
+        const updatedDoctor = await Doctor.updateOne(
             { _id: id, "credentials._id" : idCred }, 
             { $set: 
                 { 

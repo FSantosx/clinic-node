@@ -1,12 +1,11 @@
 const mongoose = require('mongoose')
 
-const User = mongoose.model("User", {
+const userAdmin = mongoose.model("UserAdmin", {
     name        :       String,
     type        :       String,
     email       :       String,
     pass        :       String,
-    birthday    :       String,
     active      :       Boolean,
 })
 
-module.exports = User
+module.exports = userAdmin

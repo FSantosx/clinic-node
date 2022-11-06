@@ -4,6 +4,7 @@ const laboratoryTechnician = mongoose.model("laboratoryTechnician", {
     name                    : String,
     crf                     : String,
     email                   : String,
+    especiality             : String, 
     cellphone               : String, 
     credentials  : [{ 
         user                : String,
