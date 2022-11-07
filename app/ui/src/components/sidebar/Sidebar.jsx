@@ -12,7 +12,7 @@ export const Sidebar = () => {
   return (
     <div className='sidebar'>
         <div className="top">
-            <span className="logo">Clinica Admin</span>
+            <span className="logo">Clinic Admin</span>
         </div>
         <hr />
         <div className="center">
@@ -31,14 +31,14 @@ export const Sidebar = () => {
                     <HealthAndSafetyIcon className="icon"/>
                     <span>Patients</span>
                 </li>
-                <p className="title">Serviços</p>
+                <p className="title">Services</p>
                 <li>
                     <PsychologyIcon className="icon"/>
                     <span>Logs</span>
                 </li>
                 <li>
                     <AssessmentIcon className="icon"/>
-                    <span>Relatorios</span>
+                    <span>Reports</span>
                 </li>
                 <li>
                     <SettingsIcon className="icon"/>
