@@ -11,6 +11,7 @@ import { List } from './pages/list/List';
 import { Single } from './pages/single/Single';
 import { New } from './pages/new/New';
 import { userInputs, patientInputs } from './formSource';
+import { Schedule } from './pages/schedule/Schedule';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -26,9 +27,12 @@ root.render(
                         <Route path='new' element={<New inputs={userInputs} title="Adicionar novo usuário" />} />
                     </Route>
                     <Route path='patients'>
-                        <Route index element={<List title="patients"/>} />
+                        <Route index element={<List title="patients" />} />
                         <Route path=':id' element={<Single />} />
                         <Route path='new' element={<New inputs={patientInputs} title="Adicionar novo Paciente" />} />
+                    </Route>
+                    <Route path="schedules">
+                        <Route index element={<Schedule />} />
                     </Route>
                 </Route>
             </Routes>

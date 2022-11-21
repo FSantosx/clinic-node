@@ -45,10 +45,12 @@ export const Sidebar = () => {
                         <PsychologyIcon className="icon" />
                         <span>Fichas</span>
                     </li>
-                    <li>
-                        <CalendarMonthIcon className="icon" />
-                        <span>Agendamentos</span>
-                    </li>
+                    <Link to="/schedules">
+                        <li>
+                            <CalendarMonthIcon className="icon" />
+                            <span>Agendamentos</span>
+                        </li>
+                    </Link>
                     <li>
                         <AssessmentIcon className="icon" />
                         <span>Relatórios</span>

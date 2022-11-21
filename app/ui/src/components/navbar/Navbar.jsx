@@ -11,9 +11,9 @@ export const Navbar = () => {
     return (
         <div className='navbar'>
             <div className="wrapper">
-                <div className='search'>
-                    <input type="text" placeholder='Search...' />
-                    <SearchOutlinedIcon />
+                <div className='search' style={{border:"none"}}>
+                    <input type="text" placeholder='Search...'  style={{display:"none"}}/>
+                    {/* <SearchOutlinedIcon /> */}
                 </div>
                 <div className="items">
                     {/* <div className="item">
