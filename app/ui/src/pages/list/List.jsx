@@ -3,13 +3,13 @@ import { Sidebar } from "../../components/sidebar/Sidebar"
 import { Navbar } from "../../components/navbar/Navbar"
 import { Datatable } from "../../components/datatable/Datatable"
 
-export const List = () => {
+export const List = ({title}) => {
     return (
         <div className='list'>
             <Sidebar />
             <div className="listContainer">
                 <Navbar />
-                <Datatable/>
+                <Datatable title={title}/>
             </div>
         </div>
     )

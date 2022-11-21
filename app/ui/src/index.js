@@ -21,12 +21,12 @@ root.render(
                     <Route index element={<Home />} />
                     <Route path='login' element={<Login />} />
                     <Route path='users'>
-                        <Route index element={<List />} />
+                        <Route index element={<List title="users" />} />
                         <Route path=':id' element={<Single />} />
                         <Route path='new' element={<New inputs={userInputs} title="Adicionar novo usuário" />} />
                     </Route>
                     <Route path='patients'>
-                        <Route index element={<List />} />
+                        <Route index element={<List title="patients"/>} />
                         <Route path=':id' element={<Single />} />
                         <Route path='new' element={<New inputs={patientInputs} title="Adicionar novo Paciente" />} />
                     </Route>

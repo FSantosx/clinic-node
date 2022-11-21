@@ -3,13 +3,28 @@ import { DataGrid } from '@mui/x-data-grid';
 import { userCol, userRows } from '../../databasesource';
 import { Link } from 'react-router-dom';
 
-export const Datatable = () => {
+export const Datatable = ({ title }) => {
+
+    var str;
+    console.log(title)
+    switch (title) {
+        case "users":
+            str = "usuário"
+            break;
+        case "patients":
+            str = "paciente"
+            break;
+        default:
+            break;
+    }
+    console.log(str)
+
     const actionCollum = [
         {
             field: "ações", headerName: "Ações", width: "300", renderCell: () => {
                 return (
                     <div className='cellAction'>
-                        <Link to="/users/test" style={{ textDecoration: "none" }}>
+                        <Link to={`/${title}/test`} style={{ textDecoration: "none" }}>
                             <div className='viewButton'>Visualizar</div>
                         </Link>
                         <div className='deleteButton'>Deletar</div>
@@ -22,8 +37,8 @@ export const Datatable = () => {
     return (
         <div className='datatable'>
             <div className="datatableTitle">
-                Adicionar novo usuário
-                <Link to="/users/new" style={{textDecoration:"none"}} className="link">
+                Adicionar novo {str}
+                <Link to={`/${title}/new`} style={{ textDecoration: "none" }} className="link">
                     Adicionar novo
                 </Link>
             </div>
