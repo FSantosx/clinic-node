@@ -16,8 +16,8 @@ export const Widget = ({ type }) => {
     switch (type) {
         case "user":
             data = {
-                title: "USERS",
-                link: 'See all users',
+                title: "USUÁRIOS",
+                link: 'Listar usuários',
                 counter: number,
                 icon: <GroupIcon className="icon" style=
                 {{ 
@@ -28,8 +28,8 @@ export const Widget = ({ type }) => {
             break;
         case "pacients":
             data = {
-                title: "PACIENTS",
-                link: 'See all patients',
+                title: "PACIENTES",
+                link: 'Listar pacientes',
                 counter: number,
                 icon: <HealthAndSafetyIcon className="icon"  style=
                 {{ 
@@ -41,7 +41,7 @@ export const Widget = ({ type }) => {
         case "logs":
             data = {
                 title: "LOGS",
-                link: 'See all logs',
+                link: 'Listar Logs',
                 counter: number,
                 icon: <PsychologyIcon className="icon"  style=
                 {{ 
@@ -52,8 +52,8 @@ export const Widget = ({ type }) => {
             break;
         case "reports":
             data = {
-                title: "REPORTS",
-                link: 'See all reports',
+                title: "RELATÓRIOS",
+                link: 'Listar relatórios',
                 counter: number,
                 icon: <AssessmentIcon className="icon"  style=
                 {{ 
