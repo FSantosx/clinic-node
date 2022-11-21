@@ -1,11 +1,11 @@
-import React from 'react'
 import './sidebar.scss'
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import GroupIcon from '@mui/icons-material/Group';
 import HealthAndSafetyIcon from '@mui/icons-material/HealthAndSafety';
 import PsychologyIcon from '@mui/icons-material/Psychology';
 import LogoutIcon from '@mui/icons-material/Logout';
-import SettingsIcon from '@mui/icons-material/Settings';
+// import SettingsIcon from '@mui/icons-material/Settings';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import { Link } from 'react-router-dom';
 
@@ -43,16 +43,21 @@ export const Sidebar = () => {
                     <p className="title">Serviços</p>
                     <li>
                         <PsychologyIcon className="icon" />
-                        <span>Logs</span>
+                        <span>Fichas</span>
+                    </li>
+                    <li>
+                        <CalendarMonthIcon className="icon" />
+                        <span>Agendamentos</span>
                     </li>
                     <li>
                         <AssessmentIcon className="icon" />
                         <span>Relatórios</span>
                     </li>
-                    <li>
+                    {/* <li>
                         <SettingsIcon className="icon" />
                         <span>Configurações</span>
-                    </li>
+                    </li> */}
+                    <p className="title">Sistema</p>
                     <li>
                         <LogoutIcon className="icon" />
                         <span>Logout</span>
