@@ -45,7 +45,7 @@ export const Sidebar = () => {
                         <PsychologyIcon className="icon" />
                         <span>Fichas</span>
                     </li>
-                    <Link to="/schedules">
+                    <Link to="/schedules"  style={{ textDecoration: "none" }}>
                         <li>
                             <CalendarMonthIcon className="icon" />
                             <span>Agendamentos</span>
