@@ -9,7 +9,7 @@ export const Schedule = () => {
             <Sidebar />
             <div className="scheduleContainer">
                 <Navbar />
-                <DatatableSchedules title={Schedule.name}/>
+                <DatatableSchedules title={Schedule.name.toLowerCase()}/>
             </div>
         </div>
     )

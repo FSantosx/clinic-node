@@ -17,3 +17,8 @@ export const patientInputs = [
     { id: 6, label: "Endereço", type: "text", placeholder: "King Landing" },
     { id: 7, label: "País", type: "text", placeholder: "Westeros" },
 ]
+
+export const schedulesInputs = [
+    { id: 1, label: "Data", type: "date", placeholder: "jaimelanister@westeros.com" },
+    { id: 2, label: "Telefone", type: "text", placeholder: "+55 (25) 9999-9999" },
+]
