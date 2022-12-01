@@ -1,6 +1,7 @@
 import './schedule.scss'
 import { Navbar } from '../../components/navbar/Navbar'
 import { Sidebar } from '../../components/sidebar/Sidebar'
+import { DatatableSchedules } from "../../components/datatableSchedules/DatatableSchedules"
 
 export const Schedule = () => {
     return (
@@ -8,7 +9,7 @@ export const Schedule = () => {
             <Sidebar />
             <div className="scheduleContainer">
                 <Navbar />
-                Agendamentos
+                <DatatableSchedules title={Schedule.name}/>
             </div>
         </div>
     )
