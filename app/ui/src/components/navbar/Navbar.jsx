@@ -1,5 +1,5 @@
 import './navbar.scss'
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined'
+// import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined'
 // import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined'
 // import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined'
 // import FullscreenExitOutlinedIcon from '@mui/icons-material/FullscreenExitOutlined'
