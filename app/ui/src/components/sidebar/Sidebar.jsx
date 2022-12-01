@@ -10,6 +10,12 @@ import AssessmentIcon from '@mui/icons-material/Assessment';
 import { Link } from 'react-router-dom';
 
 export const Sidebar = () => {
+
+    function logout() {
+        sessionStorage.clear();
+        window.location.href = '/';
+    }
+
     return (
         <div className='sidebar'>
             <div className="top">
@@ -62,7 +68,7 @@ export const Sidebar = () => {
                     <p className="title">Sistema</p>
                     <li>
                         <LogoutIcon className="icon" />
-                        <span>Logout</span>
+                        <span onClick={logout}>Logout</span>
                     </li>
                 </ul>
             </div>

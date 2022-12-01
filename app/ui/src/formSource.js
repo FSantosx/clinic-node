@@ -17,3 +17,8 @@ export const patientInputs = [
     { id: 6, label: "Endereço", type: "text", placeholder: "King Landing" },
     { id: 7, label: "País", type: "text", placeholder: "Westeros" },
 ]
+
+export const loginInputs = [
+    { id: 1, label: "Login", type: "text", placeholder: "Digite o usuário..." },
+    { id: 1, label: "Senha", type: "password", placeholder: "" }
+]
