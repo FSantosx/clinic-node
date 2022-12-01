@@ -22,3 +22,8 @@ export const schedulesInputs = [
     { id: 1, label: "Data", type: "date", placeholder: "jaimelanister@westeros.com" },
     { id: 2, label: "Telefone", type: "text", placeholder: "+55 (25) 9999-9999" },
 ]
+
+export const loginInputs = [
+    { id: 1, label: "Login", type: "text", placeholder: "Digite o usuário..." },
+    { id: 1, label: "Senha", type: "password", placeholder: "" }
+]

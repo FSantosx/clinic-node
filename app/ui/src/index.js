@@ -15,13 +15,14 @@ import { userInputs, patientInputs, schedulesInputs} from './formSource';
 import { Schedule } from './pages/schedule/Schedule';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
     <React.StrictMode>
         <BrowserRouter>
             <Routes>
                 <Route path="/">
                     <Route index element={<Home />} />
-                    <Route path='login' element={<Login />} />
+                    <Route path='login' element={<Login  />} />
                     <Route path='users'>
                         <Route index element={<List title="users" />} />
                         <Route path=':id' element={<Single />} />
