@@ -1,21 +1,10 @@
-import './datatable.scss'
+import './datatableSchedules.scss'
 import { DataGrid } from '@mui/x-data-grid';
-import { userCol, userRows } from '../../databasesource';
+import { scheduleCol, scheduleRows } from '../../databasesourceS';
 import { Link } from 'react-router-dom';
 
-export const Datatable = ({ title }) => {
-    var str;
-    switch (title) {
-        case "users":
-            str = "usuário"
-            break;
-        case "patients":
-            str = "paciente"
-            break;
-        default:
-            break;
-    }
-    
+export const DatatableSchedules = ({ title }) => {
+
     const actionCollum = [
         {
             field: "ações"
@@ -37,14 +26,14 @@ export const Datatable = ({ title }) => {
     return (
         <div className='datatable'>
             <div className="datatableTitle">
-                Adicionar novo {str}
+                Adicionar novo agendamento
                 <Link to={`/${title}/new`} style={{ textDecoration: "none" }} className="link">
                     Adicionar novo
                 </Link>
             </div>
             <DataGrid
-                rows={userRows}
-                columns={userCol.concat(actionCollum)}
+                rows={scheduleRows}
+                columns={scheduleCol.concat(actionCollum)}
                 pageSize={9}
                 rowsPerPageOptions={[9]}
                 checkboxSelection

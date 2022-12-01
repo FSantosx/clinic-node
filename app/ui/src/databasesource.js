@@ -1,6 +1,6 @@
 export const userCol = [
     { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'user', headerName: 'User', width: 230, renderCell: (params) => {
+    { field: 'usuario', headerName: 'Usuário', width: 230, renderCell: (params) => {
         return (
             <div className="Cell">
                 {params.row.firstName}
@@ -16,7 +16,7 @@ export const userCol = [
         )
     }}
 ]
-
+    
 export const userRows = [
     { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35, status: "active"},
     { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42, status: "inactive"},
