@@ -18,6 +18,9 @@ export const Datatable = ({ title }) => {
         case "tech":
             str = "técnico"
             break;
+        case "recepcionists":
+            str = "recepcionistas"
+            break;
         default:
             break;
     }

@@ -6,6 +6,7 @@ import PsychologyIcon from '@mui/icons-material/Psychology';
 import LogoutIcon from '@mui/icons-material/Logout';
 import MedicalServicesOutlinedIcon from '@mui/icons-material/MedicalServicesOutlined';
 import VaccinesOutlinedIcon from '@mui/icons-material/VaccinesOutlined';
+import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 // import SettingsIcon from '@mui/icons-material/Settings';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import AssessmentIcon from '@mui/icons-material/Assessment';
@@ -52,6 +53,12 @@ export const Sidebar = () => {
                         <li>
                             <VaccinesOutlinedIcon className="icon" />
                             <span>Técnicos em Laboratório</span>
+                        </li>
+                    </Link>
+                    <Link to="/recepcionists" style={{ textDecoration: "none" }}>
+                        <li>
+                            <AssignmentIndIcon className="icon" />
+                            <span>Recepcionistas</span>
                         </li>
                     </Link>
                     <Link to="/patients" style={{ textDecoration: "none" }}>

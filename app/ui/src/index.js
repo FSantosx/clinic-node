@@ -11,7 +11,7 @@ import { List } from './pages/list/List';
 import { Single } from './pages/single/Single';
 import { New } from './pages/new/New';
 import { NewSchedule } from './pages/newSchedule/NewSchedule';
-import { userInputs, patientInputs, schedulesInputs, doctorInputs, techInputs} from './formSource';
+import { userInputs, patientInputs, schedulesInputs, doctorInputs, techInputs, recepInputs} from './formSource';
 import { Schedule } from './pages/schedule/Schedule';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -42,6 +42,11 @@ root.render(
                         <Route index element={<List title="patients" />} />
                         <Route path=':id' element={<Single />} />
                         <Route path='new' element={<New inputs={patientInputs} title="Adicionar novo Paciente" />} />
+                    </Route>
+                    <Route path='recepcionists'>
+                        <Route index element={<List title="recepcionists" />} />
+                        <Route path=':id' element={<Single />} />
+                        <Route path='new' element={<New inputs={recepInputs} title="Adicionar novo recepcionista" />} />
                     </Route>
                     <Route path="schedule">
                         <Route index element={<Schedule />} />
