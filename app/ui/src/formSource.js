@@ -8,6 +8,25 @@ export const userInputs = [
     { id: 6, label: "País", type: "text", placeholder: "Westeros" },
 ]
 
+export const doctorInputs = [
+    { id: 1, label: "Nome", type: "text", placeholder: "Jaime Lanister" },
+    { id: 2, label: "Email", type: "mail", placeholder: "jaimelanister@westeros.com" },
+    { id: 3, label: "Telefone", type: "text", placeholder: "+55 (25) 9999-9999" },
+    { id: 4, label: "CRM", type: "text", placeholder: "99999-SP" },
+    { id: 5, label: "idade", type: "text", placeholder:"25" },
+    { id: 6, label: "Endereço", type: "text", placeholder: "King Landing" },
+    { id: 7, label: "País", type: "text", placeholder: "Westeros" },
+]
+export const techInputs = [
+    { id: 1, label: "Nome", type: "text", placeholder: "Jaime Lanister" },
+    { id: 2, label: "Email", type: "mail", placeholder: "jaimelanister@westeros.com" },
+    { id: 3, label: "Telefone", type: "text", placeholder: "+55 (25) 9999-9999" },
+    { id: 4, label: "CRF", type: "text", placeholder: "99999-SP" },
+    { id: 5, label: "idade", type: "text", placeholder:"25" },
+    { id: 6, label: "Endereço", type: "text", placeholder: "King Landing" },
+    { id: 7, label: "País", type: "text", placeholder: "Westeros" },
+]
+
 export const patientInputs = [
     { id: 1, label: "Nome", type: "text", placeholder: "Jaime Lanister" },
     { id: 2, label: "Email", type: "mail", placeholder: "jaimelanister@westeros.com" },

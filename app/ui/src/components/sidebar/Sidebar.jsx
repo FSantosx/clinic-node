@@ -4,6 +4,8 @@ import GroupIcon from '@mui/icons-material/Group';
 import HealthAndSafetyIcon from '@mui/icons-material/HealthAndSafety';
 import PsychologyIcon from '@mui/icons-material/Psychology';
 import LogoutIcon from '@mui/icons-material/Logout';
+import MedicalServicesOutlinedIcon from '@mui/icons-material/MedicalServicesOutlined';
+import VaccinesOutlinedIcon from '@mui/icons-material/VaccinesOutlined';
 // import SettingsIcon from '@mui/icons-material/Settings';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import AssessmentIcon from '@mui/icons-material/Assessment';
@@ -38,6 +40,18 @@ export const Sidebar = () => {
                         <li>
                             <GroupIcon className="icon" />
                             <span>Usuários</span>
+                        </li>
+                    </Link>
+                    <Link to="/doctors" style={{ textDecoration: "none" }}>
+                        <li>
+                            <MedicalServicesOutlinedIcon className="icon" />
+                            <span>Médicos</span>
+                        </li>
+                    </Link>
+                    <Link to="/tech" style={{ textDecoration: "none" }}>
+                        <li>
+                            <VaccinesOutlinedIcon className="icon" />
+                            <span>Técnicos em Laboratório</span>
                         </li>
                     </Link>
                     <Link to="/patients" style={{ textDecoration: "none" }}>

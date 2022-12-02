@@ -12,10 +12,16 @@ export const Datatable = ({ title }) => {
         case "patients":
             str = "paciente"
             break;
+        case "doctors":
+            str = "médico"
+            break;
+        case "tech":
+            str = "técnico"
+            break;
         default:
             break;
     }
-    
+
     const actionCollum = [
         {
             field: "ações"
