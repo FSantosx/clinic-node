@@ -2,7 +2,6 @@ import './new.scss'
 import { useState } from 'react'
 import { Sidebar } from "../../components/sidebar/Sidebar"
 import { Navbar } from "../../components/navbar/Navbar"
-import DriveFolderUploadOutlinedIcon from '@mui/icons-material/DriveFolderUploadOutlined'
 
 export const New = ({ inputs, title }) => {
 
@@ -18,7 +17,6 @@ export const New = ({ inputs, title }) => {
         data[index]["value"] = event.target.value;
         setInputFields(data);
     }
-
 
     return (
         <div className='new'>

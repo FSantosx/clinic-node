@@ -8,7 +8,6 @@ import { useState } from 'react'
 import './home.scss'
 import { Login } from '../login/Login';
 
-
 export const Home = () => {
 
     if(!sessionStorage.getItem('tok')){

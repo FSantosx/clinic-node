@@ -1,4 +1,32 @@
-const Constants = require('./constants');;
+EIO = Object.freeze({
+    REPLACE: 0
+    , APPEND: 1
+    , MAX_LOG_LINES: 1024
+})
+
+EIOErrors = Object.freeze({
+    PATH_MISSING: -1
+    , OBJ_MISSING: -2
+    , PATH_BROKEN: -3
+})
+
+EArrayOperations = Object.freeze({
+    SUM: 0
+    , AVERAGE: 1
+    , HARMONIC: 2
+    , TREND: 3
+    , PROGRESS: 4
+    , INTERPOLATE: 5
+    , MAX: 6
+    , MIN: 7
+    , RELATIFY: 8
+})
+
+EArrayCasts = Object.freeze({
+    STRING: 0
+    , FLOAT: 1
+    , INT: 2
+})
 
 
 class FObject extends Object {
@@ -164,8 +192,8 @@ class FArray extends Array {
         if (!fn) return this;
         return this.extract((x, i) => { return fn(x, i) })
     }
-    cast(filter = Constants.EArrayCasts.STRING) {
-        return this.extract(x => { return filter = Constants.EArrayCasts.STRING ? x + "" : (filter === Constants.EArrayCasts.FLOAT ? x * 1.0 : x * 1) })
+    cast(filter = EArrayCasts.STRING) {
+        return this.extract(x => { return filter = EArrayCasts.STRING ? x + "" : (filter === EArrayCasts.FLOAT ? x * 1.0 : x * 1) })
     }
     fit(n = 10) {
         let
@@ -174,20 +202,20 @@ class FArray extends Array {
             , i = x
             ;
         while (i < this.length) {
-            narr.push(this.calc(Constants.EArrayOperations.TREND, i));
+            narr.push(this.calc(EArrayOperations.TREND, i));
             i += x;
         }
         narr.push(this.last())
         return narr
     }
-    calc(type = Constants.SUM, helper = null) {
+    calc(type = SUM, helper = null) {
         let
             res = 0;
         switch (type) {
-            case (Constants.SUM): this.each(x => res += x); break
-            case (Constants.AVERAGE): this.each(x => res += x); res = res / this.length; break
-            case (Constants.HARMONIC): this.each(x => res += 1 / x); res = this.length / res; break
-            case (Constants.TREND): {
+            case (SUM): this.each(x => res += x); break
+            case (AVERAGE): this.each(x => res += x); res = res / this.length; break
+            case (HARMONIC): this.each(x => res += 1 / x); res = this.length / res; break
+            case (TREND): {
                 let
                     m, b, x, y, x2, xy, z, np = this.length;
                 m = b = x = y = x2 = xy = z = 0;
@@ -205,21 +233,21 @@ class FArray extends Array {
                 }
                 res = m * helper + b
             } break;
-            case (Constants.PROGRESS): {
+            case (PROGRESS): {
                 let
                     me = this;
-                res = this.extract((x, i) => { return i ? me[i] / me[i - 1] : 1 }).calc(Constants.AVERAGE)
+                res = this.extract((x, i) => { return i ? me[i] / me[i - 1] : 1 }).calc(AVERAGE)
             } break;
-            case (Constants.MAX):
+            case (MAX):
                 res = Number.MIN_SAFE_INTEGER;
                 this.each(x => res = Math.max(res, x))
                 break;
-            case (Constants.MIN):
+            case (MIN):
                 res = Number.MAX_SAFE_INTEGER;
                 this.each(x => res = Math.min(res, x))
                 break;
-            case (Constants.RELATIFY):
-                res = this.calc(Constants.MAX);
+            case (RELATIFY):
+                res = this.calc(MAX);
                 res = this.extract(x => x / res)
                 break;
             default:
@@ -239,7 +267,7 @@ class FArray extends Array {
                 if (y == null || y == undefined) nulls.push(x);
                 else return [x, y];
             })
-        nulls.each(n => narr.push([n, narr.calc(Constants.INTERPOLATE, n)]));
+        nulls.each(n => narr.push([n, narr.calc(INTERPOLATE, n)]));
         narr.sort(function (a, b) { return a[0] - b[0] })
         return narr;
     }

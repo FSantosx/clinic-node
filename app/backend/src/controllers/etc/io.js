@@ -1,16 +1,47 @@
 
 const
-    fs = require("fs")
+    fs = require('fs')
     , os = require('os')
     , { FArray, FObject } = require('./il')
-    , Constants = require("./constants")
     ;;
+
+EIO = Object.freeze({
+    REPLACE: 0
+    , APPEND: 1
+    , MAX_LOG_LINES: 1024
+})
+
+EIOErrors = Object.freeze({
+    PATH_MISSING: -1
+    , OBJ_MISSING: -2
+    , PATH_BROKEN: -3
+})
+
+EArrayOperations = Object.freeze({
+    SUM: 0
+    , AVERAGE: 1
+    , HARMONIC: 2
+    , TREND: 3
+    , PROGRESS: 4
+    , INTERPOLATE: 5
+    , MAX: 6
+    , MIN: 7
+    , RELATIFY: 8
+})
+
+EArrayCasts = Object.freeze({
+    STRING: 0
+    , FLOAT: 1
+    , INT: 2
+})
+
+const ROOT = __dirname + "/../../../"
 
 
 module.exports = class IO {
     static root(path = null) {
         if (path && (path[0] === "/" || path.match(/\b[a-zA-Z]{1}:.*/gi))) return path;
-        return Constants.ROOT + (path || '')
+        return ROOT + (path || '')
     }
 
     static exists(f) {
@@ -20,27 +51,26 @@ module.exports = class IO {
     static read(f) {
         var tmp = "";
         f = IO.root(f);
-        if (f && fs.existsSync(f)) tmp = fs.readFileSync(f, Constants.UTF8).trim();
+        if (f && fs.existsSync(f)) tmp = fs.readFileSync(f, "utf8").trim();
         return tmp;
     }
 
-    static write(f, content, mode = Constants.EIO.REPLACE) {
+    static write(f, content, mode = EIO.REPLACE) {
         f = IO.root(f)
         var tmp = f.split(/\//g);
         tmp = tmp.slice(0, tmp.length - 1)
         if (!fs.existsSync(tmp)) IO.mkd(tmp.join("/"))
-        tmp = (mode === Constants.EIO.APPEND && fs.existsSync(f) ? IO.read(f) + "\n" : "") + content
+        tmp = (mode === EIO.APPEND && fs.existsSync(f) ? IO.read(f) + "\n" : "") + content
         fs.writeFileSync(f, tmp)
         return fs.existsSync(f)
     }
 
-    static jin(path = null, obj = null, mode = Constants.EIO.REPLACE) {
+    static jin(path = null, obj = null, mode = EIO.REPLACE) {
         try {
-            if (path === null) return Constants.EIOErrors.PATH_MISSING
-            if (obj === null) return Constants.EIOErrors.OBJ_MISSING
+            if (path === null) return EIOErrors.PATH_MISSING
+            if (obj === null) return EIOErrors.OBJ_MISSING
             return IO.write(path, JSON.stringify(obj, null, 4), mode);
         } catch (e) {
-            if (Constants.VERBOSE >= 2) console.trace(e);
             return false
         }
     }
@@ -50,23 +80,22 @@ module.exports = class IO {
             const tmp = JSON.parse(IO.read(path));;
             return Array.isArray(tmp) ? FArray.cast(tmp) : FObject.cast(tmp)
         } catch (e) {
-            if (Constants.VERBOSE >= 2) console.trace(e);
             return false
         }
     }
 
-    static log(content, f = "debug", mode = Constants.EIO.APPEND) {
+    static log(content, f = "debug", mode = EIO.APPEND) {
         var tmp = [], offset;
         f = "var/logs/" + f + (f.indexOf('.log') + 1 ? '' : '.log');
         if (fs.existsSync(IO.root(f))) {
-            tmp = mode === Constants.EIO.APPEND ? IO.read(f) : null
+            tmp = mode === EIO.APPEND ? IO.read(f) : null
             if (tmp) tmp = tmp.split(/\n/g)
             else tmp = []
         }
         tmp.push(content);
-        offset = tmp.length - Constants.EIO.MAX_LOG_LINES;
-        tmp = tmp.slice(offset > 0 ? offset : 0, Constants.EIO.MAX_LOG_LINES).join('\n');
-        IO.write(f, tmp, Constants.EIO.REPLACE);
+        offset = tmp.length - EIO.MAX_LOG_LINES;
+        tmp = tmp.slice(offset > 0 ? offset : 0, EIO.MAX_LOG_LINES).join('\n');
+        IO.write(f, tmp, EIO.REPLACE);
         return content
     }
 
@@ -118,18 +147,18 @@ module.exports = class IO {
     }
 
     static rm(p = null) {
-        if (p === null) return Constants.EIOErrors.PATH_MISSING;
+        if (p === null) return EIOErrors.PATH_MISSING;
         p = IO.root(p);
         return fs.existsSync(p) ? fs.unlinkSync(p) : true;
     }
 
     static cpr(f, t) {
-        if (!f || !t) return Constants.EIOErrors.PATH_MISSING;
+        if (!f || !t) return EIOErrors.PATH_MISSING;
 
         f = IO.root(f)
         t = IO.root(t)
 
-        if (!fs.existsSync(f)) return Constants.EIOErrors.PATH_BROKEN;
+        if (!fs.existsSync(f)) return EIOErrors.PATH_BROKEN;
         if (!fs.existsSync(f)) fs.mkdirSync(t)
 
         if (fs.lstatSync(f).isDirectory()) {
@@ -141,7 +170,7 @@ module.exports = class IO {
     }
 
     static mv(f, t) {
-        if (!f || !t) return Constants.EIOErrors.PATH_MISSING;
+        if (!f || !t) return EIOErrors.PATH_MISSING;
         f = IO.root(f)
         t = IO.root(t)
         return fs.renameSync(f, t)
