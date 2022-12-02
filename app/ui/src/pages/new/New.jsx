@@ -15,7 +15,7 @@ export const New = ({ inputs, title }) => {
 
     const handleFormChange = (index, event) => {
         let data = [...inputs];
-        data[index][event.target.name] = event.target.value;
+        data[index]["value"] = event.target.value;
         setInputFields(data);
     }
 
@@ -44,7 +44,7 @@ export const New = ({ inputs, title }) => {
                                 return (
                                     <div className="formInput" key={index}>
                                         <label>{input.label}</label>
-                                        <input type={input.type} placeholder={input.placeholder} name={index.id}
+                                        <input type={input.type} placeholder={input.placeholder} name={input.name}
                                             onChange={event => handleFormChange(index, event)}
                                         />
                                     </div>
