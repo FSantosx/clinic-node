@@ -1,0 +1,54 @@
+.new {    
+
+    .bottom {
+        display: block !important;
+        width: 500px;
+        margin: 20px auto !important;
+    }
+
+    input {
+        margin: 10px 0;
+        width: 100%;
+        padding: 5px;
+        border: none;
+        border-bottom: 1px solid gray;
+    }
+
+    select, option {
+        width: 100%;
+        margin: 10px 0;
+        left: 0;
+        padding: 8px;
+        font-weight: bold;
+        color: lightseagreen;
+
+    }
+
+    label {
+        align-items: center;
+        gap: 10px;
+
+        .icon {
+            cursor: pointer;
+        }
+        display: block;
+        left: 0;
+        font-size: 20px;
+        margin: 20px 0 0 0;
+
+    }
+
+    button {
+        width: auto;
+        padding: 10px 20px ;
+        border: none;
+        background-color: teal;
+        color: white;
+        font-weight: 300;
+        font-size: 24px;
+        cursor: pointer;
+        margin:20px auto;
+        display: block;
+    }
+
+}
