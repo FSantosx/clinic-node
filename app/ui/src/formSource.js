@@ -49,7 +49,7 @@ export const recepInputs = [
 
 export const schedulesInputs = [
     { id: 1, label: "Data", type: "date", placeholder: "jaimelanister@westeros.com" },
-    { id: 2, label: "Telefone", type: "text", placeholder: "+55 (25) 9999-9999" },
+    { id: 2, label: "Telefone", type: "tel", placeholder: "+55 (25) 9999-9999" },
 ]
 
 export const loginInputs = [
