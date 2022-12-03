@@ -1,16 +1,24 @@
 import './datatable.scss'
 import { DataGrid } from '@mui/x-data-grid';
-import { userCol, patientCol, recepcionistCol, doctorCol, scheduleCol, techCol} from '../../Col';
+import { userCol, patientCol, recepcionistCol, doctorCol, techCol } from '../../Col';
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useLayoutEffect, useEffect } from 'react';
 
 export const Datatable = ({ title }) => {
+
     var str;
+    var data = "";
+    var collumn;
+
     const Users = () => {
         const [users, setUsers] = useState([])
-
         useEffect(() => {
-            fetch("http://localhost:3001/api/db/users/list").then(response => response.json()).then(data => setUsers(data)).catch(err => console.trace(err))
+            fetch("http://localhost:3001/api/db/users/list")
+                .then(response => response.json())
+                .then(data => {
+                    setUsers(data)
+                })
+                .catch(err => console.trace(err))
         }, [])
         return users;
     }
@@ -19,7 +27,10 @@ export const Datatable = ({ title }) => {
         const [patients, setPatients] = useState([])
 
         useEffect(() => {
-            fetch("http://localhost:3001/api/db/patients/list").then(response => response.json()).then(data => setPatients(data)).catch(err => console.trace(err))
+            fetch("http://localhost:3001/api/db/patients/list")
+                .then(response => response.json())
+                .then(data => setPatients(data))
+                .catch(err => console.trace(err))
         }, [])
         return patients;
     }
@@ -51,8 +62,8 @@ export const Datatable = ({ title }) => {
         return tech;
     }
 
-    let data;
-    let collumn
+
+
     switch (title) {
         case "users":
             str = "usuário"
@@ -101,6 +112,14 @@ export const Datatable = ({ title }) => {
             }
         }
     ]
+
+    // const datagrid = <DataGrid
+    //     rows={data}
+    //     columns={collumn.concat(actionCollum)}
+    //     pageSize={9}
+    //     rowsPerPageOptions={[9]}
+    //     checkboxSelection
+    // />
 
     return (
         <div className='datatable'>
