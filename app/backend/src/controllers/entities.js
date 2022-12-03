@@ -29,7 +29,7 @@ module.exports = class Entities {
     static create(table, payload) {
         let newid = parseInt((Math.random() * 1000000))
         const file = `./db/${table}/${newid}.json`
-        var obj = {'id' : newid}
+        var obj = {'id' : newid}        
         for (const [field, value] of Object.entries( payload )) {
             obj[ field ] = value
         }      

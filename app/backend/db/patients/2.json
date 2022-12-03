@@ -1,7 +1,6 @@
 {
     "id": 2,
-    "lastName": "Golçalves",
-    "firstName": "Arlete",
+    "name": "Arlete Golçalves",
     "age": 55,
     "status": "active",
     "cpf": "123.654.104-11"

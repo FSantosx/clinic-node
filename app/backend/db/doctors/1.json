@@ -1,7 +1,7 @@
 {
     "id": 1,
-    "lastName": "Pacheco",
-    "firstName": "João",
+    "doctor": "João Antonio",
+    "email": "joao_antonio@doctor.com",
     "age": 35,
     "status": "active",
     "crm": "CRM-46541"

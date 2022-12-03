@@ -1,9 +1,25 @@
 import './datatableSchedules.scss'
 import { DataGrid } from '@mui/x-data-grid';
-import { scheduleCol, scheduleRows } from '../../databasesourceS';
+import { scheduleCol } from '../../databasesourceS';
+import { useEffect, useState} from "react";
 import { Link } from 'react-router-dom';
 
 export const DatatableSchedules = ({ title }) => {
+
+    const Schedules = () => {
+        const [schedules, setSchedules] = useState([])
+
+        useEffect(() => {
+            fetch("http://localhost:3001/api/db/schedules/list").then(response => response.json()).then(data => setSchedules(data)).catch(err => console.trace(err))
+        }, [])
+        return schedules;
+    }
+
+    let str = "Agendamentos"
+    let data = Schedules();
+    let collumn = scheduleCol;
+
+
 
     const actionCollum = [
         {
@@ -32,8 +48,8 @@ export const DatatableSchedules = ({ title }) => {
                 </Link>
             </div>
             <DataGrid
-                rows={scheduleRows}
-                columns={scheduleCol.concat(actionCollum)}
+                rows={data}
+                columns={collumn.concat(actionCollum)}
                 pageSize={9}
                 rowsPerPageOptions={[9]}
                 checkboxSelection
