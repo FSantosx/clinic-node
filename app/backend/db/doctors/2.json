@@ -1,8 +1,8 @@
 {
     "id": 2,
-    "lastName": "Diniz",
-    "firstName": "Vera",
+    "doctor": "Vera Diniz",
     "age": 42,
+    "email": "vera_diniz@doctor.com",
     "status": "active",
     "crm": "CRM-29084"
 }

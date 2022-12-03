@@ -7,11 +7,11 @@ import AssessmentIcon from '@mui/icons-material/Assessment';
 import GroupIcon from '@mui/icons-material/Group';
 
 
-export const Widget = ({ type }) => {
+export const Widget = ({ type, len }) => {
     let data;
 
     //todo - remove static assignment
-    let number = Math.floor(Math.random() * (20 - 1) + 1)
+    let number = len
 
     switch (type) {
         case "user":
@@ -38,10 +38,10 @@ export const Widget = ({ type }) => {
                 }}/>
             }
             break;
-        case "logs":
+        case "Schedules":
             data = {
-                title: "LOGS",
-                link: 'Listar Logs',
+                title: "AGENDAMENTOS",
+                link: 'Listar Agendamentos',
                 counter: number,
                 icon: <PsychologyIcon className="icon"  style=
                 {{ 

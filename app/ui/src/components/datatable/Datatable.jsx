@@ -1,25 +1,83 @@
 import './datatable.scss'
 import { DataGrid } from '@mui/x-data-grid';
-import { userCol, userRows } from '../../databasesource';
+import { userCol, patientCol, recepcionistCol, doctorCol, scheduleCol, techCol} from '../../Col';
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 export const Datatable = ({ title }) => {
     var str;
+    const Users = () => {
+        const [users, setUsers] = useState([])
+
+        useEffect(() => {
+            fetch("http://localhost:3001/api/db/users/list").then(response => response.json()).then(data => setUsers(data)).catch(err => console.trace(err))
+        }, [])
+        return users;
+    }
+
+    const Patients = () => {
+        const [patients, setPatients] = useState([])
+
+        useEffect(() => {
+            fetch("http://localhost:3001/api/db/patients/list").then(response => response.json()).then(data => setPatients(data)).catch(err => console.trace(err))
+        }, [])
+        return patients;
+    }
+
+    const Doctors = () => {
+        const [doctors, setDoctors] = useState([])
+
+        useEffect(() => {
+            fetch("http://localhost:3001/api/db/doctors/list").then(response => response.json()).then(data => setDoctors(data)).catch(err => console.trace(err))
+        }, [])
+        return doctors;
+    }
+
+    const Recepcionists = () => {
+        const [recepcionists, setRecepcionists] = useState([])
+
+        useEffect(() => {
+            fetch("http://localhost:3001/api/db/recepcionists/list").then(response => response.json()).then(data => setRecepcionists(data)).catch(err => console.trace(err))
+        }, [])
+        return recepcionists;
+    }
+
+    const Tech = () => {
+        const [tech, setTech] = useState([])
+
+        useEffect(() => {
+            fetch("http://localhost:3001/api/db/tech/list").then(response => response.json()).then(data => setTech(data)).catch(err => console.trace(err))
+        }, [])
+        return tech;
+    }
+
+    let data;
+    let collumn
     switch (title) {
         case "users":
             str = "usuário"
+            data = Users();
+            collumn = userCol;
             break;
         case "patients":
             str = "paciente"
+            data = Patients();
+            collumn = patientCol;
+            break;
+        case "tech":
+            str = "Tecnico em Laboratorio"
+            data = Tech();
+            collumn = techCol;
             break;
         case "doctors":
             str = "médico"
-            break;
-        case "tech":
-            str = "técnico"
+            data = Doctors();
+            collumn = doctorCol
             break;
         case "recepcionists":
-            str = "recepcionistas"
+            str = "recepcionista"
+            data = Recepcionists();
+            collumn = recepcionistCol;
             break;
         default:
             break;
@@ -33,7 +91,7 @@ export const Datatable = ({ title }) => {
             , renderCell: () => {
                 return (
                     <div className='cellAction'>
-                        <Link to={`/${title}/test`} style={{ textDecoration: "none" }}>
+                        <Link to={`/${title}/:id`} style={{ textDecoration: "none" }}>
                             <div className='viewButton'>Visualizar</div>
                         </Link>
                         <div className='deleteButton'>Deletar</div>
@@ -43,6 +101,7 @@ export const Datatable = ({ title }) => {
             }
         }
     ]
+
     return (
         <div className='datatable'>
             <div className="datatableTitle">
@@ -52,8 +111,8 @@ export const Datatable = ({ title }) => {
                 </Link>
             </div>
             <DataGrid
-                rows={userRows}
-                columns={userCol.concat(actionCollum)}
+                rows={data}
+                columns={collumn.concat(actionCollum)}
                 pageSize={9}
                 rowsPerPageOptions={[9]}
                 checkboxSelection

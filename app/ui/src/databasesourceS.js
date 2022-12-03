@@ -1,9 +1,9 @@
 export const scheduleCol = [
     { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'paciente', headerName: 'Paciente', width: 230, renderCell: (params) => {
+    { field: 'patient', headerName: 'id paciente', width: 230, renderCell: (params) => {
         return (
             <div className="Cell">
-                {params.row.firstName}
+                {params.row.patient}
             </div>
         )
     }},
@@ -15,10 +15,4 @@ export const scheduleCol = [
             </div>
         )
     }}
-]
-
-export const scheduleRows = [
-    { id: 234, firstName: 'Jon', data: '12/12/2022', status: "agendado"},
-    { id: 432, firstName: 'Jon', data: '12/12/2022', status: "desistencia"},
-    { id: 433, firstName: 'Jon', data: '12/12/2022', status: "remarcado"},
 ]

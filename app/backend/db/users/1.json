@@ -1,4 +1,7 @@
 {
+    "id": 1,
     "user": "santos",
-    "pass": "12345"
+    "email": "fabio@clinica.com",
+    "pass": "12345",
+    "status": "active"
 }
