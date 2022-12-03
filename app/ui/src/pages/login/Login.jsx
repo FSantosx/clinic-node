@@ -1,9 +1,5 @@
 import React, {useState} from 'react'
-import {Redirect} from 'react-router-dom'
 import './login.scss'
-import { Home } from '../home/Home';
-import { WindowSharp } from '@mui/icons-material';
-
 
 export const Login = ({ setToken="" }) => { 
     

@@ -1,9 +1,7 @@
 import '../new/new.scss'
 import './newSchedule.scss'
-import { useState } from 'react'
 import { Sidebar } from "../../components/sidebar/Sidebar"
 import { Navbar } from "../../components/navbar/Navbar"
-import DriveFolderUploadOutlinedIcon from '@mui/icons-material/DriveFolderUploadOutlined'
 
 export const NewSchedule = ({ inputs, title }) => {
 

@@ -15,11 +15,8 @@ export const DatatableSchedules = ({ title }) => {
         return schedules;
     }
 
-    let str = "Agendamentos"
     let data = Schedules();
     let collumn = scheduleCol;
-
-
 
     const actionCollum = [
         {
