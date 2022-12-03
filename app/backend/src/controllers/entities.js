@@ -13,8 +13,8 @@ module.exports = class Entities {
                 res = Entities.list(table)
                 return res
                 break;
-            case "edit":
-                res = Entities.edit(table, id)
+            case "get":
+                res = Entities.get(table, id)
                 return res
                 break;
             case "delete":
@@ -27,9 +27,13 @@ module.exports = class Entities {
     }
 
     static create(table, payload) {
-        let newid = parseInt((Math.random() * 1000000))
-        const file = `./db/${table}/${newid}.json`
-        var obj = {'id' : newid}        
+        let id = parseInt((Math.random() * 1000000))
+        if(payload?.id) {
+            id = payload.id
+        }
+
+        const file = `./db/${table}/${id}.json`
+        var obj = {'id' : id}        
         for (const [field, value] of Object.entries( payload )) {
             obj[ value.name ] = value.value
         }      
@@ -49,7 +53,7 @@ module.exports = class Entities {
         return arr;;
     }
     
-    static edit(table, id) {
+    static get(table, id) {
         const file = `./db/${table}/${id}.json`
         let arr = []
         arr.push(IO.jout(file))
