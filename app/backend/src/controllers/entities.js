@@ -31,7 +31,7 @@ module.exports = class Entities {
         const file = `./db/${table}/${newid}.json`
         var obj = {'id' : newid}        
         for (const [field, value] of Object.entries( payload )) {
-            obj[ field ] = value
+            obj[ value.name ] = value.value
         }      
         if (IO.jin(file, obj)) {
             return newid ;;

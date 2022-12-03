@@ -2,7 +2,7 @@ import './datatable.scss'
 import { DataGrid } from '@mui/x-data-grid';
 import { userCol, patientCol, recepcionistCol, doctorCol, techCol } from '../../Col';
 import { Link } from 'react-router-dom';
-import { useState, useLayoutEffect, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 export const Datatable = ({ title }) => {
 
@@ -62,7 +62,21 @@ export const Datatable = ({ title }) => {
         return tech;
     }
 
+    function refreshPage() {
+        window.location.reload(false);
+    }
 
+    function Delete(e, id) {
+        e.stopPropagation();
+        fetch(`http://localhost:3001/api/db/${title}/delete/${id}`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }).catch(err => console.trace(err));
+        refreshPage()
+    }
 
     switch (title) {
         case "users":
@@ -99,14 +113,14 @@ export const Datatable = ({ title }) => {
             field: "ações"
             , headerName: "Ações"
             , width: "300"
-            , renderCell: () => {
+            , renderCell: (params) => {
                 return (
                     <div className='cellAction'>
                         <Link to={`/${title}/:id`} style={{ textDecoration: "none" }}>
-                            <div className='viewButton'>Visualizar</div>
+                            <button className='viewButton'>Visualizar</button>
                         </Link>
-                        <div className='deleteButton'>Deletar</div>
-                        <div className='editButton'>Editar</div>
+                        <button className='deleteButton' onClick={(e) => Delete(e, params.row.id)}>Deletar</button>
+                        <button className='editButton'>Editar</button>
                     </div>
                 )
             }

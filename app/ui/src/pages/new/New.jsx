@@ -1,5 +1,5 @@
 import './new.scss'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Sidebar } from "../../components/sidebar/Sidebar"
 import { Navbar } from "../../components/navbar/Navbar"
 
@@ -7,9 +7,21 @@ export const New = ({ inputs, title }) => {
 
     const [inputFields, setInputFields] = useState([...inputs])
 
+    const Users = (inputFields) => {
+        fetch("http://localhost:3001/api/db/users/create", {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(inputFields)
+        }).catch(err => console.trace(err))
+    }
+
     const submit = (e) => {
         e.preventDefault();
-        console.log(inputFields)
+        console.log(JSON.stringify(inputFields))
+        Users(inputFields)
     }
 
     const handleFormChange = (index, event) => {
