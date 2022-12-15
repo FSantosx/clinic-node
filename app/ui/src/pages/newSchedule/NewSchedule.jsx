@@ -1,9 +1,26 @@
 import '../new/new.scss'
 import './newSchedule.scss'
+import { useEffect, useState } from 'react'
 import { Sidebar } from "../../components/sidebar/Sidebar"
 import { Navbar } from "../../components/navbar/Navbar"
 
+
 export const NewSchedule = ({ inputs, title }) => {
+
+    const Patients = () => {
+        const [patients, setPatients] = useState([])
+        useEffect(() => {
+            fetch("http://localhost:3001/api/db/patients/list")
+                .then(response => response.json())
+                .then(data => {
+                    setPatients(data)
+                })
+                .catch(err => console.trace(err))
+        }, [])
+        return patients;
+    }
+
+    const pat = Patients();
 
     return (
         <div className='new'>
@@ -18,8 +35,13 @@ export const NewSchedule = ({ inputs, title }) => {
                         <div className="formInput">
                             <label>Paciente</label>
                             <select name="paciente" id="paciente">
-                                <option value="Teste1">Teste1</option>
-                                <option value="Teste2">Teste2</option>
+                                {
+                                    pat.map(p => {
+                                        return (
+                                            <option value={p.name}>{p.name}</option>
+                                        )
+                                    })
+                                }
                             </select>
                             <label>Status</label>
                             <select name="status" id="status">
@@ -27,7 +49,7 @@ export const NewSchedule = ({ inputs, title }) => {
                                 <option value="Teste2">desistencia</option>
                                 <option value="Teste2">remarcado</option>
                             </select>
-                        </div>    
+                        </div>
                         {inputs.map((input) => {
                             return (
                                 <div className="formInput" key={input.id}>
@@ -36,7 +58,7 @@ export const NewSchedule = ({ inputs, title }) => {
                                 </div>
                             )
                         })}
-                        <button>Salvar Agendamento</button>                        
+                        <button>Salvar Agendamento</button>
                     </div>
                 </form>
             </div>
