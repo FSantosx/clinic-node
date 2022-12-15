@@ -43,11 +43,12 @@ export const recepInputs = [
 ]
 
 export const schedulesInputs = [
-    { id: 1, label: "Data", name: "date", type: "date", placeholder: "jaimelanister@westeros.com" },
+    // {}
+    { id: 1, label: "Data", name: "date", type: "date"},
     { id: 2, label: "Telefone", name: "tel", type: "tel", placeholder: "+55 (25) 9999-9999" },
 ]
 
 export const loginInputs = [
     { id: 1, label: "Login", name: "user", type: "text", placeholder: "Digite o usuário..." },
-    { id: 1, label: "Senha", name: "pass", type: "password", placeholder: "" }
+    { id: 2, label: "Senha", name: "pass", type: "password", placeholder: "" }
 ]

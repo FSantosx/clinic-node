@@ -7,6 +7,8 @@ import { Navbar } from "../../components/navbar/Navbar"
 
 export const NewSchedule = ({ inputs, title }) => {
 
+    const [inputFields, setInputFields] = useState([...inputs])
+
     const Patients = () => {
         const [patients, setPatients] = useState([])
         useEffect(() => {
@@ -20,6 +22,34 @@ export const NewSchedule = ({ inputs, title }) => {
         return patients;
     }
 
+    const Save = (inputFields) => {
+        inputFields.push(
+            { name: 'paciente', value: document.getElementById('paciente').value }
+            , {name:'status', value: document.getElementById('status').value}
+        )
+        console.log(document.getElementById('paciente').text)
+        fetch(`http://localhost:3001/api/db/schedules/create`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(inputFields)
+        }).catch(err => console.trace(err))
+    }
+
+    const submit = (e) => {
+        e.preventDefault();
+        console.log(JSON.stringify(inputFields))
+        Save(inputFields)
+    }
+
+    const handleFormChange = (index, event) => {
+        let data = [...inputs];
+        data[index]["value"] = event.target.value;
+        setInputFields(data);
+    }
+
     const pat = Patients();
 
     return (
@@ -30,35 +60,35 @@ export const NewSchedule = ({ inputs, title }) => {
                 <div className="top">
                     <h1>{title}</h1>
                 </div>
-                <form>
+                <form onSubmit={submit}>
                     <div className="bottom">
                         <div className="formInput">
                             <label>Paciente</label>
                             <select name="paciente" id="paciente">
                                 {
-                                    pat.map(p => {
+                                    pat.map((p) => {
                                         return (
-                                            <option value={p.name}>{p.name}</option>
+                                            <option value={p.id}>{p.name}</option>
                                         )
                                     })
                                 }
                             </select>
                             <label>Status</label>
                             <select name="status" id="status">
-                                <option value="Teste1" selected>agendado</option>
-                                <option value="Teste2">desistencia</option>
-                                <option value="Teste2">remarcado</option>
+                                <option value="agendado" selected>agendado</option>
+                                <option value="desistencia">desistencia</option>
+                                <option value="remarcado">remarcado</option>
                             </select>
                         </div>
-                        {inputs.map((input) => {
+                        {inputs.map((input, index) => {
                             return (
                                 <div className="formInput" key={input.id}>
                                     <label>{input.label}</label>
-                                    <input type={input.type} placeholder={input.placeholder} />
+                                    <input type={input.type} placeholder={input.placeholder} onChange={event => handleFormChange(index, event)} />
                                 </div>
                             )
                         })}
-                        <button>Salvar Agendamento</button>
+                        <button onClick={submit}>Salvar Agendamento</button>
                     </div>
                 </form>
             </div>

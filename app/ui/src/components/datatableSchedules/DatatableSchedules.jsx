@@ -15,6 +15,21 @@ export const DatatableSchedules = ({ title }) => {
         return schedules;
     }
 
+    const Patients = () => {
+        const [patients, setPatients] = useState([])
+        useEffect(() => {
+            fetch("http://localhost:3001/api/db/patients/list")
+                .then(response => response.json())
+                .then(data => {
+                    setPatients(data)
+                })
+                .catch(err => console.trace(err))
+        }, [])
+        return patients;
+    }
+
+    const pat = Patients();
+
     let data = Schedules();
     let collumn = scheduleCol;
 
