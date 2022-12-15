@@ -5,6 +5,7 @@ import { Chart } from '../../components/chart/Chart'
 import { TableList } from '../../components/table/TableList'
 
 export const Single = () => {
+
     return (
         <div className='single'>
             <Sidebar />
@@ -15,7 +16,6 @@ export const Single = () => {
                         <div className="editButtom">Editar</div>
                         <h1 className="title">Informações</h1>
                         <div className="item">
-                            <img src="" alt="" className='itemImg' />
                             <div className="datails">
                                 <h1 className="itemTitle"> Jon Snow</h1>
                                 <div className="detailItem">

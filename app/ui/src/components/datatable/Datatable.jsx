@@ -131,14 +131,6 @@ export const Datatable = ({ title }) => {
         }
     ]
 
-    // const datagrid = <DataGrid
-    //     rows={data}
-    //     columns={collumn.concat(actionCollum)}
-    //     pageSize={9}
-    //     rowsPerPageOptions={[9]}
-    //     checkboxSelection
-    // />
-
     return (
         <div className='datatable'>
             <div className="datatableTitle">

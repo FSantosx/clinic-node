@@ -3,12 +3,12 @@ import { useState } from 'react'
 import { Sidebar } from "../../components/sidebar/Sidebar"
 import { Navbar } from "../../components/navbar/Navbar"
 
-export const New = ({ inputs, title }) => {
+export const New = ({ inputs, title, db }) => {
 
     const [inputFields, setInputFields] = useState([...inputs])
 
-    const Users = (inputFields) => {
-        fetch("http://localhost:3001/api/db/users/create", {
+    const Save = (inputFields) => {
+        fetch(`http://localhost:3001/api/db/${db}/create`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -21,7 +21,7 @@ export const New = ({ inputs, title }) => {
     const submit = (e) => {
         e.preventDefault();
         console.log(JSON.stringify(inputFields))
-        Users(inputFields)
+        Save(inputFields)
     }
 
     const handleFormChange = (index, event) => {
