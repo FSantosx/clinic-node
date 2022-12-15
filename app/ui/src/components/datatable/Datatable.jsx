@@ -10,6 +10,8 @@ export const Datatable = ({ title }) => {
     var data = "";
     var collumn;
 
+    console.log(title)
+
     const Users = () => {
         const [users, setUsers] = useState([])
         useEffect(() => {
@@ -116,12 +118,14 @@ export const Datatable = ({ title }) => {
             , renderCell: (params) => {
                 return (
                     <div className='cellAction'>
-                        <Link to={`/${title}/:id`} style={{ textDecoration: "none" }}>
-                            <button className='viewButton'>Visualizar</button>
+                        <Link to={`/${title}/${params.row.id}`} style={{ textDecoration: "none" }} >
+                            <button className='viewButton'> Visualizar </button>
                         </Link>
                         <button className='deleteButton' onClick={(e) => Delete(e, params.row.id)}>Deletar</button>
-                        <button className='editButton'>Editar</button>
-                    </div>
+                        <Link to={`/${title}/${params.row.id}`} style={{ textDecoration: "none" }} >
+                            <button className='editButton'>Editar</button>
+                        </Link>
+                    </div >
                 )
             }
         }

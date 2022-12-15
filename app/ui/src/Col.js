@@ -1,5 +1,5 @@
 export const userCol = [
-    { field: 'id', headerName: 'ID', width: 70 },
+    { field: 'id', headerName: 'ID', width: 70, renderCell: (params) => console.log(params.row.id) },
     {
         field: 'user', headerName: 'Usuário', width: 230, renderCell: (params) => {
             return (
