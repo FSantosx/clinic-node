@@ -3,6 +3,8 @@
     "name": "teste 2",
     "email": "teste@teset",
     "tel": "9999999999999",
+    "adress": "Rua a",
     "cpf": "999999999",
-    "age": "34"
+    "age": "34",
+    "status": "ativo"
 }

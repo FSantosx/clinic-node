@@ -6,7 +6,7 @@ import { Chart } from '../../components/chart/Chart'
 import { TableList } from '../../components/table/TableList'
 
 export const Single = () => {
-    
+
     const length = window.location.href.split('/').length
     const table = window.location.href.split('/')[length - 2]
     const id = window.location.href.split('/')[length - 1]
@@ -16,11 +16,20 @@ export const Single = () => {
 
         useEffect(() => {
             fetch(`http://localhost:3001/api/db/${table}/get/${id}`).then(response => response.json()).then(data => setPreview(data)).catch(err => console.trace(err))
-        }, [])
+        })
         return Preview;
     }
 
-    const data = Preview(table, id)
+    const data = Preview(table, id);
+    const graph = <div className="right">
+        <Chart aspect={3 / 1} title='Atendimentos dos ultimos 6 meses' />
+    </div>
+    const call = <div className="bottom">
+        <h1 className="title">Ultimos Atendimentos</h1>
+        <TableList />
+    </div>
+    const crm = <span className="itemKey">CRM: </span>
+    const cpf = <span className="itemKey">CPF: </span>
 
     return (
         <div className='single'>
@@ -33,30 +42,37 @@ export const Single = () => {
                         <h1 className="title">Informações</h1>
                         <div className="item">
                             <div className="datails">
-                                <h1 className="itemTitle"> Jon Snow</h1>
+                                <h1 className="itemTitle">{data[0]?.name}</h1>
                                 <div className="detailItem">
                                     <span className="itemKey">Email: </span>
-                                    <span className="itemValue">jonsnow@westeros.com</span>
+                                    <span className="itemValue">{data[0]?.email}</span>
                                 </div>
                                 <div className="detailItem">
                                     <span className="itemKey">Telefone: </span>
-                                    <span className="itemValue">+55(25)9999-9999</span>
+                                    <span className="itemValue">{data[0]?.tel}</span>
+                                </div>
+                                <div className="detailItem">
+                                    {table === "doctors" || table === "tech" ? crm : cpf }
+                                    <span className="itemValue">{data[0]?.cpf || data[0].crm }</span>
                                 </div>
                                 <div className="detailItem">
                                     <span className="itemKey">Endereço: </span>
-                                    <span className="itemValue">Muralha, portão 2</span>
+                                    <span className="itemValue">{data[0]?.adress}</span>
+                                </div>
+                                <div className="detailItem">
+                                    <span className="itemKey">Idade </span>
+                                    <span className="itemValue">{data[0]?.age}</span>
+                                </div>
+                                <div className="detailItem">
+                                    <span className="itemKey">Status </span>
+                                    <span className="itemValue">{data[0]?.status}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className="right">
-                        <Chart aspect={3 / 1} title='Atendimentos dos ultimos 6 meses' />
-                    </div>
+                    {table === "users" ? null : graph}
                 </div>
-                <div className="bottom">
-                    <h1 className="title">Ultimos Atendimentos</h1>
-                    <TableList />
-                </div>
+                {table === "users" ? null : call}
             </div>
         </div>
     )
