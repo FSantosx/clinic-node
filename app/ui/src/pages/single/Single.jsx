@@ -1,10 +1,26 @@
 import './single.scss'
+import { useEffect, useState } from 'react'
 import { Sidebar } from "../../components/sidebar/Sidebar"
 import { Navbar } from "../../components/navbar/Navbar"
 import { Chart } from '../../components/chart/Chart'
 import { TableList } from '../../components/table/TableList'
 
 export const Single = () => {
+    
+    const length = window.location.href.split('/').length
+    const table = window.location.href.split('/')[length - 2]
+    const id = window.location.href.split('/')[length - 1]
+
+    const Preview = (table, id) => {
+        const [Preview, setPreview] = useState([])
+
+        useEffect(() => {
+            fetch(`http://localhost:3001/api/db/${table}/get/${id}`).then(response => response.json()).then(data => setPreview(data)).catch(err => console.trace(err))
+        }, [])
+        return Preview;
+    }
+
+    const data = Preview(table, id)
 
     return (
         <div className='single'>
