@@ -21,6 +21,7 @@ export const Single = () => {
     }
 
     const data = Preview(table, id);
+    console.log(data)
     const graph = <div className="right">
         <Chart aspect={3 / 1} title='Atendimentos dos ultimos 6 meses' />
     </div>
@@ -53,7 +54,7 @@ export const Single = () => {
                                 </div>
                                 <div className="detailItem">
                                     {table === "doctors" || table === "tech" ? crm : cpf }
-                                    <span className="itemValue">{data[0]?.cpf || data[0].crm }</span>
+                                    <span className="itemValue">{data[0]?.cpf || data[0]?.crm }</span>
                                 </div>
                                 <div className="detailItem">
                                     <span className="itemKey">Endereço: </span>
