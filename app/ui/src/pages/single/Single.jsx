@@ -4,24 +4,27 @@ import { Sidebar } from "../../components/sidebar/Sidebar"
 import { Navbar } from "../../components/navbar/Navbar"
 import { Chart } from '../../components/chart/Chart'
 import { TableList } from '../../components/table/TableList'
+import { Link } from 'react-router-dom';
 
 export const Single = () => {
 
-    const length = window.location.href.split('/').length
-    const table = window.location.href.split('/')[length - 2]
-    const id = window.location.href.split('/')[length - 1]
+    const len = window.location.href.split('/').length
+    const table = window.location.href.split('/')[len - 2]
+    const id = window.location.href.split('/')[len - 1]
 
     const Preview = (table, id) => {
         const [Preview, setPreview] = useState([])
 
         useEffect(() => {
-            fetch(`http://localhost:3001/api/db/${table}/get/${id}`).then(response => response.json()).then(data => setPreview(data)).catch(err => console.trace(err))
-        })
+            fetch(`http://localhost:3001/api/db/${table}/get/${id}`)
+            .then(response => response.json())
+            .then(data => setPreview(data))
+            .catch(err => console.trace(err))
+        }, [table, id])
         return Preview;
     }
 
     const data = Preview(table, id);
-    console.log(data)
     const graph = <div className="right">
         <Chart aspect={3 / 1} title='Atendimentos dos ultimos 6 meses' />
     </div>
@@ -39,7 +42,9 @@ export const Single = () => {
                 <Navbar />
                 <div className="top">
                     <div className="left">
-                        <div className="editButtom">Editar</div>
+                        <Link to={`/${table}/new/${id}`} style={{ textDecoration: "none" }} >
+                            <button className='editButtom'> Editar </button>
+                        </Link>
                         <h1 className="title">Informações</h1>
                         <div className="item">
                             <div className="datails">
@@ -53,8 +58,8 @@ export const Single = () => {
                                     <span className="itemValue">{data[0]?.tel}</span>
                                 </div>
                                 <div className="detailItem">
-                                    {table === "doctors" || table === "tech" ? crm : cpf }
-                                    <span className="itemValue">{data[0]?.cpf || data[0]?.crm }</span>
+                                    {table === "doctors" || table === "tech" ? crm : cpf}
+                                    <span className="itemValue">{data[0]?.cpf || data[0]?.crm}</span>
                                 </div>
                                 <div className="detailItem">
                                     <span className="itemKey">Endereço: </span>

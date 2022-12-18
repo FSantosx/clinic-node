@@ -27,6 +27,7 @@ root.render(
                         <Route index element={<List title="users" />} />
                         <Route path=':id' element={<Single />} />
                         <Route path='new' element={<New inputs={userInputs} title="Adicionar novo usuário" db="users"/>} />
+                        <Route path='new/:id' element={<New inputs={userInputs} title="Editar usuário" db="users"/>} />
                     </Route>
                     <Route path='doctors'>
                         <Route index element={<List title="doctors" />} />
