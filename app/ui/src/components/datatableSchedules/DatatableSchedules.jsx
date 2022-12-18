@@ -21,7 +21,11 @@ export const DatatableSchedules = ({ title }) => {
             fetch("http://localhost:3001/api/db/patients/list")
                 .then(response => response.json())
                 .then(data => {
-                    setPatients(data)
+                    let list = {}
+                    data.forEach((item) => {
+                        list[item['id']] = item
+                    })
+                    setPatients(list)                    
                 })
                 .catch(err => console.trace(err))
         }, [])
@@ -31,6 +35,11 @@ export const DatatableSchedules = ({ title }) => {
     const pat = Patients();
 
     let data = Schedules();
+
+    for(let i=0; i<data.length;i++) {
+        data[ i ]['pname'] = pat[ data[ i ]['paciente'] ]['name']
+    }
+    console.log(data)
     let collumn = scheduleCol;
 
     const actionCollum = [
@@ -41,9 +50,9 @@ export const DatatableSchedules = ({ title }) => {
             , renderCell: () => {
                 return (
                     <div className='cellAction'>
-                        <Link to={`/${title}/test`} style={{ textDecoration: "none" }}>
+                        {/*<Link to={`/${title}/test`} style={{ textDecoration: "none" }}>
                             <div className='viewButton'>Visualizar</div>
-                        </Link>
+                        </Link>*/}
                         <div className='deleteButton'>Deletar</div>
                         <div className='editButton'>Editar</div>
                     </div>
