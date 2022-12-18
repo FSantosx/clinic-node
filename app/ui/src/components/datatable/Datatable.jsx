@@ -134,9 +134,9 @@ export const Datatable = ({ title }) => {
                             <button className='viewButton'> Visualizar </button>
                         </Link>
                         <button className='deleteButton' onClick={(e) => Delete(e, params.row.id)}>Deletar</button>
-                        <Link to={`/${title}/${params.row.id}`} style={{ textDecoration: "none" }} >
+                        {/* <Link to={`/${title}/${params.row.id}`} style={{ textDecoration: "none" }} >
                             <button className='editButton'>Editar</button>
-                        </Link>
+                        </Link> */}
                     </div >
                 )
             }
