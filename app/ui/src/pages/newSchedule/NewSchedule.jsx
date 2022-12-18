@@ -23,18 +23,18 @@ export const NewSchedule = ({ inputs, title }) => {
     }
 
     const Save = (inputFields) => {
-        inputFields.push(
-            { name: 'paciente', value: document.getElementById('paciente').value }
-            , {name:'status', value: document.getElementById('status').value}
-        )
-        console.log(document.getElementById('paciente').text)
+        inputFields.push({ id: 3, name: 'paciente', value: document.getElementById('paciente').value })
+        inputFields.push({ id: 4, name:'status', value: document.getElementById('status').value})
+        
+        let payload = {id : '', formData : inputFields}
+        
         fetch(`http://localhost:3001/api/db/schedules/create`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(inputFields)
+            body: JSON.stringify(payload)
         }).catch(err => console.trace(err))
     }
 
@@ -42,6 +42,7 @@ export const NewSchedule = ({ inputs, title }) => {
         e.preventDefault();
         console.log(JSON.stringify(inputFields))
         Save(inputFields)
+        document.location.href = `/schedule`
     }
 
     const handleFormChange = (index, event) => {
