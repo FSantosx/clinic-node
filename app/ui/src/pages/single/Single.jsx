@@ -16,14 +16,15 @@ export const Single = () => {
 
         useEffect(() => {
             fetch(`http://localhost:3001/api/db/${table}/get/${id}`).then(response => response.json()).then(data => setPreview(data)).catch(err => console.trace(err))
-        })
+        }, [table,id])
+        
         return Preview;
     }
 
-    const data = Preview(table, id);
-    console.log(data)
-    const graph = <div className="right">
-        <Chart aspect={3 / 1} title='Atendimentos dos ultimos 6 meses' />
+    const data = Preview(table, id);    
+    
+    const graph = <div className="right">        
+        <Chart aspect={3 / 1} title='Atendimentos dos ultimos 6 meses' last ={data[0]?.last} />
     </div>
     const call = <div className="bottom">
         <h1 className="title">Ultimos Atendimentos</h1>
@@ -73,7 +74,7 @@ export const Single = () => {
                     </div>
                     {table === "users" ? null : graph}
                 </div>
-                {table === "users" ? null : call}
+                {/* table === "users" ? null : call */}
             </div>
         </div>
     )

@@ -49,12 +49,12 @@ export const Sidebar = () => {
                             <span>Médicos</span>
                         </li>
                     </Link>
-                    <Link to="/tech" style={{ textDecoration: "none" }}>
+                    {/*<Link to="/tech" style={{ textDecoration: "none" }}>
                         <li>
                             <VaccinesOutlinedIcon className="icon" />
                             <span>Técnicos em Laboratório</span>
                         </li>
-                    </Link>
+                    </Link> */}
                     <Link to="/recepcionists" style={{ textDecoration: "none" }}>
                         <li>
                             <AssignmentIndIcon className="icon" />
@@ -68,10 +68,10 @@ export const Sidebar = () => {
                         </li>
                     </Link>
                     <p className="title">Serviços</p>
-                    <li>
+                    {/*<li>
                         <PsychologyIcon className="icon" />
                         <span>Fichas</span>
-                    </li>
+                    </li>*/}
                     <Link to="/schedule"  style={{ textDecoration: "none" }}>
                         <li>
                             <CalendarMonthIcon className="icon" />

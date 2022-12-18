@@ -4,5 +4,6 @@
     "age": 42,
     "email": "vera_diniz@doctor.com",
     "status": "active",
-    "crm": "CRM-29084"
+    "crm": "CRM-29084",
+    "last": [3, 6, 2, 4, 6, 12]
 }

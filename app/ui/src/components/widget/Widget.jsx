@@ -71,13 +71,13 @@ export const Widget = ({ type, len }) => {
             <div className="left">
                 <span className='title'>{data.title}</span>
                 <span className='counter'>{data.counter}</span>
-                <span className='link'>{data.link}</span>
+                {/*<span className='link'>{data.link}</span>*/}
             </div>
             <div className="right">
-                <div className="percentage positive">
+                {/*<div className="percentage positive">
                     <KeyboardArrowUpIcon />
                     20%
-                </div>
+                </div>*/}
                 { data.icon }
             </div>
         </div>
