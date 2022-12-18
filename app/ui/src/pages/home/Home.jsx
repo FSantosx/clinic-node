@@ -36,11 +36,30 @@ export const Home = () => {
         }, [])
         return schedules;
     }
+
+    const Doctors = () => {
+        const [doctors, setDoctors] = useState([])
+        
+        useEffect(() => {
+            fetch("http://localhost:3001/api/db/doctors/list").then(response => response.json()).then(data => setDoctors(data)).catch(err => console.trace(err))
+        }, [])
+        return doctors;
+    }
     
     const UsersLen = Users().length
     const PatientsLen = Patients().length
     const SchedulesLen = Schedules().length
-    
+    const doctors = Doctors()
+    const gdata = []
+    for (let d of doctors) {        
+        for(let i=0; i<d.last.length;i++){
+            let v = 0
+            if(gdata[i] === undefined) {
+                gdata[i] = 0                
+            }            
+            gdata[i] += parseInt(d.last[i])            
+        }
+    }    
 
     if (!sessionStorage.getItem('tok')) {
         return <Login />
@@ -57,16 +76,15 @@ export const Home = () => {
                     <Widget type="Schedules" len={SchedulesLen}/>
                     <Widget type="reports" len={0}/>
                 </div>
-                <div className="charts">
-                    <Featured />
-                    <Chart />
+                <div className="charts">                    
+                    <Chart  title='Atendimentos dos ultimos 6 meses' last = {gdata}  />
                 </div>
-                <div className="listContainer">
+                {/*<div className="listContainer">
                     <div className="listTitle">
                         Últimos atendimentos
                     </div>
                     <TableList />
-                </div>
+                </div>*/}
             </div>
         </div>
     )

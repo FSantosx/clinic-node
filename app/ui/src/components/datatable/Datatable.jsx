@@ -12,6 +12,9 @@ export const Datatable = ({ title }) => {
 
     console.log(title)
 
+    const a=  "", 
+          b = "";;
+
     const Users = () => {
         const [users, setUsers] = useState([])
         useEffect(() => {
@@ -21,28 +24,37 @@ export const Datatable = ({ title }) => {
                     setUsers(data)
                 })
                 .catch(err => console.trace(err))
-        }, [])
+        }, [a,b])
         return users;
     }
 
     const Patients = () => {
         const [patients, setPatients] = useState([])
-
+        data=""
         useEffect(() => {
             fetch("http://localhost:3001/api/db/patients/list")
                 .then(response => response.json())
-                .then(data => setPatients(data))
+                .then(dat => {
+                    setPatients(dat)
+                    if (!data) RefreshPage()
+                })
                 .catch(err => console.trace(err))
-        }, [])
+        }, [a,b])
         return patients;
     }
 
     const Doctors = () => {
         const [doctors, setDoctors] = useState([])
-
+        data=""
         useEffect(() => {
-            fetch("http://localhost:3001/api/db/doctors/list").then(response => response.json()).then(data => setDoctors(data)).catch(err => console.trace(err))
-        }, [])
+            fetch("http://localhost:3001/api/db/doctors/list")
+            .then(response => response.json())
+            .then(dat => {
+                setDoctors(dat)
+                if (!data) RefreshPage()
+            })
+            .catch(err => console.trace(err))
+        }, [a,b])
         return doctors;
     }
 
@@ -51,7 +63,7 @@ export const Datatable = ({ title }) => {
 
         useEffect(() => {
             fetch("http://localhost:3001/api/db/recepcionists/list").then(response => response.json()).then(data => setRecepcionists(data)).catch(err => console.trace(err))
-        }, [])
+        }, [a,b])
         return recepcionists;
     }
 
@@ -60,12 +72,12 @@ export const Datatable = ({ title }) => {
 
         useEffect(() => {
             fetch("http://localhost:3001/api/db/tech/list").then(response => response.json()).then(data => setTech(data)).catch(err => console.trace(err))
-        }, [])
+        }, [a,b])
         return tech;
     }
-
-    function refreshPage() {
-        window.location.reload(false);
+    
+    function RefreshPage() {
+        window.location.reload(true);
     }
 
     function Delete(e, id) {
@@ -77,7 +89,7 @@ export const Datatable = ({ title }) => {
                 'Content-Type': 'application/json'
             }
         }).catch(err => console.trace(err));
-        refreshPage()
+        RefreshPage()
     }
 
     switch (title) {
@@ -89,7 +101,7 @@ export const Datatable = ({ title }) => {
         case "patients":
             str = "paciente"
             data = Patients();
-            collumn = patientCol;
+            collumn = patientCol;            
             break;
         case "tech":
             str = "Tecnico em Laboratorio"
@@ -130,6 +142,7 @@ export const Datatable = ({ title }) => {
             }
         }
     ]
+    
 
     return (
         <div className='datatable'>
