@@ -28,17 +28,18 @@ module.exports = class Entities {
 
     static create(table, payload) {
         let id = parseInt((Math.random() * 1000000))
+        console.log(payload)
         if(payload?.id) {
             id = payload.id
         }
 
         const file = `./db/${table}/${id}.json`
         var obj = {'id' : id}        
-        for (const [field, value] of Object.entries( payload )) {
+        for (const [field, value] of Object.entries( payload.formData )) {
             obj[ value.name ] = value.value
         }      
         if (IO.jin(file, obj)) {
-            return newid ;;
+            return id ;;
         } else {
             return false;
         }
@@ -57,6 +58,7 @@ module.exports = class Entities {
         const file = `./db/${table}/${id}.json`
         let arr = []
         arr.push(IO.jout(file))
+        console.log(arr)
         return arr;;
     }
 

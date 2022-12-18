@@ -1,26 +1,29 @@
 import './new.scss'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Sidebar } from "../../components/sidebar/Sidebar"
 import { Navbar } from "../../components/navbar/Navbar"
+import useFetch from "react-fetch-hook"
 
 
 
 export const New = ({ inputs, title, db }) => {
 
     const Save = (inputFields) => {
+        var obj = {}
+        obj = { id: document.getElementById('rid').value, formData: inputFields }
+        console.log(obj)
         fetch(`http://localhost:3001/api/db/${db}/create`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(inputFields)
+            body: JSON.stringify(obj)
         }).catch(err => console.trace(err))
     }
 
     const submit = (e) => {
         e.preventDefault();
-        console.log(JSON.stringify(inputFields))
         Save(inputFields)
     }
 
@@ -41,16 +44,7 @@ export const New = ({ inputs, title, db }) => {
         id = href.split('/')[len - 1]
     }
 
-    const Edit = (table, id) => {
-        const [edit, setEdit] = useState()
-        fetch(`http://localhost:3001/api/db/${table}/get/${id}`)
-            .then(response => response.json())
-            .then(data => setEdit(data))
-            .catch(err => console.trace(err))
-        return edit
-    }
-
-    const dbData = Edit(table, id);
+    const { isLoading, error, data } = useFetch(`http://localhost:3001/api/db/${table}/get/${id}`);
     const [inputFields, setInputFields] = useState([...inputs])
 
     const newData = <div className='new'>
@@ -73,12 +67,16 @@ export const New = ({ inputs, title, db }) => {
                                 </div>
                             )
                         })}
+                        <input type='hidden' name='rid' id='rid' defaultValue='' />
                         <button onClick={submit}>Enviar</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
+    if (isLoading) return "Loading ..."
+    if (error) return newData
 
     const editData = <div className='new'>
         <Sidebar />
@@ -95,11 +93,12 @@ export const New = ({ inputs, title, db }) => {
                                 <div className="formInput" key={index}>
                                     <label>{input.label}</label>
                                     <input type={input.type} placeholder={input.placeholder} name={input.name}
-                                       value={dbData[input.name]} onChange={event => handleFormChange(index, event)}
+                                        defaultValue={data[0][input.name]} onChange={event => handleFormChange(index, event)}
                                     />
                                 </div>
                             )
                         })}
+                        <input type='hidden' name='rid' id='rid' defaultValue={data[0].id} />
                         <button onClick={submit}>Enviar</button>
                     </form>
                 </div>
