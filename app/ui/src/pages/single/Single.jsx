@@ -65,16 +65,16 @@ export const Single = () => {
                                 </div>
                                 <div className="detailItem">
                                     <span className="itemKey">Endereço: </span>
-                                    <span className="itemValue">{data[0]?.adress}</span>
+                                    <span className="itemValue">{data[0]?.address}</span>
                                 </div>
                                 <div className="detailItem">
                                     <span className="itemKey">Idade </span>
                                     <span className="itemValue">{data[0]?.age}</span>
-                                </div>
+                                </div>                                
                                 <div className="detailItem">
                                     <span className="itemKey">Status </span>
-                                    <span className="itemValue">{data[0]?.status}</span>
-                                </div>
+                                    <span className="itemValue">{(data[0]?.status) ? data[0]?.status : "N/A"}</span>
+                                </div>                                
                             </div>
                         </div>
                     </div>

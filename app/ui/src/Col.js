@@ -61,24 +61,16 @@ export const recepcionistCol = [
 export const doctorCol = [
     { field: 'id', headerName: 'ID', width: 70 },
     {
-        field: 'doctor', headerName: 'Médico', width: 230, renderCell: (params) => {
+        field: 'name', headerName: 'Médico', width: 230, renderCell: (params) => {
             return (
                 <div className="Cell">
-                    {params.row.doctor}
+                    {params.row.name}
                 </div>
             )
         }
     },
     { field: 'email', headerName: 'Email', width: 230 },
-    {
-        field: 'status', headerName: "Status", width: 160, renderCell: (params) => {
-            return (
-                <div className={`cellWithStatus ${params.row.status}`}>
-                    {params.row.status}
-                </div>
-            )
-        }
-    }
+    
 ]
 
 export const techCol = [

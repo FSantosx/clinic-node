@@ -1,9 +1,10 @@
 {
-    "id": 1,
-    "doctor": "João Antonio",
+    "id": "1",
+    "name": "Dr. Arnaldo Arruda",
     "email": "joao_antonio@doctor.com",
-    "age": 35,
-    "status": "active",
+    "tel": "11 989754232",
     "crm": "CRM-46541",
-    "last": [5, 7, 10, 5, 7, 8]
+    "age": "35",
+    "address": "Rua morango, 123",
+    "last" : [2,4,0,3,4,5]
 }

@@ -8,38 +8,38 @@ export const userInputs = [
 ]
 
 export const doctorInputs = [
-    { id: 1, label: "Nome", name: "name", type: "text", placeholder: "Jaime Lanister" },
-    { id: 2, label: "Email", name: "email", type: "mail", placeholder: "jaimelanister@westeros.com" },
+    { id: 1, label: "Nome", name: "name", type: "text", placeholder: "nome.." },
+    { id: 2, label: "Email", name: "email", type: "mail", placeholder: "e-mail.." },
     { id: 3, label: "Telefone", name: "tel", type: "text", placeholder: "+55 (25) 9999-9999" },
     { id: 4, label: "CRM", name: "crm", type: "text", placeholder: "99999-SP" },
     { id: 5, label: "idade", name: "age", type: "text", placeholder: "25" },
-    { id: 6, label: "Endereço", name: "address", type: "text", placeholder: "King Landing" },
+    { id: 6, label: "Endereço", name: "address", type: "text", placeholder: "Endereço..." },
 ]
 export const techInputs = [
-    { id: 1, label: "Nome", name: "name", type: "text", placeholder: "Jaime Lanister" },
-    { id: 2, label: "Email", name: "email", type: "mail", placeholder: "jaimelanister@westeros.com" },
+    { id: 1, label: "Nome", name: "name", type: "text", placeholder: "nome.." },
+    { id: 2, label: "Email", name: "email", type: "mail", placeholder: "e-mail.." },
     { id: 3, label: "Telefone", name: "tel", type: "text", placeholder: "+55 (25) 9999-9999" },
     { id: 4, label: "CRF", name: "crf", type: "text", placeholder: "99999-SP" },
     { id: 5, label: "idade", name: "age", type: "text", placeholder: "25" },
-    { id: 6, label: "Endereço", name: "address", type: "text", placeholder: "King Landing" },
+    { id: 6, label: "Endereço", name: "address", type: "text", placeholder: "Endereço..." },
 ]
 
 export const patientInputs = [
-    { id: 1, label: "Nome", name: "name", type: "text", placeholder: "Jaime Lanister" },
-    { id: 2, label: "Email", name: "email", type: "mail", placeholder: "jaimelanister@westeros.com" },
+    { id: 1, label: "Nome", name: "name", type: "text", placeholder: "nome.." },
+    { id: 2, label: "Email", name: "email", type: "mail", placeholder: "e-mail.." },
     { id: 3, label: "Telefone", name: "tel", type: "text", placeholder: "+55 (25) 9999-9999" },
     { id: 4, label: "CPF", name: "cpf", type: "text", placeholder: "999.999.999-99" },
     { id: 5, label: "idade", name: "age", type: "text", placeholder: "25" },
-    { id: 6, label: "Endereço", name: "address", type: "text", placeholder: "King Landing" },
+    { id: 6, label: "Endereço", name: "address", type: "text", placeholder: "Endereço..." },
 ]
 
 export const recepInputs = [
-    { id: 1, label: "Nome", name: "name", type: "text", placeholder: "Jaime Lanister" },
-    { id: 2, label: "Email", name: "email", type: "mail", placeholder: "jaimelanister@westeros.com" },
+    { id: 1, label: "Nome", name: "name", type: "text", placeholder: "nome.." },
+    { id: 2, label: "Email", name: "email", type: "mail", placeholder: "e-mail.." },
     { id: 3, label: "Telefone", name: "tel", type: "text", placeholder: "+55 (25) 9999-9999" },
     { id: 4, label: "CPF", name: "cpf", type: "text", placeholder: "999.999.999-99" },
     { id: 5, label: "idade", name: "age", type: "text", placeholder: "25" },
-    { id: 6, label: "Endereço", name: "address", type: "text", placeholder: "King Landing" },
+    { id: 6, label: "Endereço", name: "address", type: "text", placeholder: "Endereço..." },
 ]
 
 export const schedulesInputs = [

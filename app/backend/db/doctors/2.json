@@ -1,9 +1,10 @@
 {
-    "id": 2,
-    "doctor": "Vera Diniz",
-    "age": 42,
+    "id": "2",
+    "name": "Dra. Vera Diniz",
     "email": "vera_diniz@doctor.com",
-    "status": "active",
+    "tel": "",
     "crm": "CRM-29084",
-    "last": [3, 6, 2, 4, 6, 12]
+    "age": "42",
+    "address": "",
+    "last" : [0,5,8,3,4,1]
 }
