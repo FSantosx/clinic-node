@@ -28,7 +28,7 @@ module.exports = class Entities {
 
     static create(table, payload) {
         let id = parseInt((Math.random() * 1000000))
-        console.log(payload)
+        // console.log(payload)
         if(payload?.id) {
             id = payload.id
         }
@@ -58,7 +58,7 @@ module.exports = class Entities {
         const file = `./db/${table}/${id}.json`
         let arr = []
         arr.push(IO.jout(file))
-        console.log(arr)
+        // console.log(arr)
         return arr;;
     }
 

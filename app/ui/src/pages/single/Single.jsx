@@ -24,7 +24,8 @@ export const Single = () => {
         return Preview;
     }
 
-    const data = Preview(table, id);    
+    const data = Preview(table, id);
+    console.log(data)
     
     const graph = <div className="right">        
         <Chart aspect={3 / 1} title='Atendimentos dos ultimos 6 meses' last ={data[0]?.last} />
@@ -49,7 +50,7 @@ export const Single = () => {
                         <h1 className="title">Informações</h1>
                         <div className="item">
                             <div className="datails">
-                                <h1 className="itemTitle">{data[0]?.name}</h1>
+                                <h1 className="itemTitle">{data[0]?.name||data[0]?.doctor||data[0]?.patiant}</h1>
                                 <div className="detailItem">
                                     <span className="itemKey">Email: </span>
                                     <span className="itemValue">{data[0]?.email}</span>

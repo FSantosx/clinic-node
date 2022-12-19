@@ -75,7 +75,7 @@ export const NewSchedule = ({ inputs, title }) => {
 
     const submit = (e) => {
         e.preventDefault();        
-        console.log(JSON.stringify(inputFields))
+        // console.log(JSON.stringify(inputFields))
         Save(inputFields)
         document.location.href = `/schedule`
     }
@@ -84,10 +84,10 @@ export const NewSchedule = ({ inputs, title }) => {
         let data = [...inputs];
         data[index]["value"] = event.target.value;
         setInputFields(data);
-        console.log(inputFields)
+        // console.log(inputFields)
     }
 
-    console.log(inputFields)
+    // console.log(inputFields)
 
     const pat = Patients();
     let Data = Schedules();
