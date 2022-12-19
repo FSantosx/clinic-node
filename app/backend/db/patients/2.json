@@ -1,8 +1,9 @@
 {
-    "id": 2,
+    "id": "2",
     "name": "Arlete Golçalves",
-    "age": 55,
-    "status": "active",
+    "email": "arlete@email.com",
+    "tel": "11 98765-4231",
     "cpf": "123.654.104-11",
-    "last": [0, 0, 2, 0, 0, 1]
+    "age": "55",
+    "address": "Rua das couves"
 }

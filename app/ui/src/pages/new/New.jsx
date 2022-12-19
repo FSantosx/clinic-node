@@ -10,8 +10,13 @@ export const New = ({ inputs, title, db }) => {
 
     const Save = (inputFields) => {
         var obj = {}
+        
+        for (let i=0;i<inputFields.length;i++ ) {
+            inputFields[i].value = document.getElementById( inputFields[i]['name'] ).value
+        }
+
         obj = { id: document.getElementById('rid').value, formData: inputFields }
-        console.log(obj)
+        
         fetch(`http://localhost:3001/api/db/${db}/create`, {
             method: 'POST',
             headers: {
@@ -62,7 +67,7 @@ export const New = ({ inputs, title, db }) => {
                             return (
                                 <div className="formInput" key={index}>
                                     <label>{input.label}</label>
-                                    <input type={input.type} placeholder={input.placeholder} name={input.name}
+                                    <input type={input.type} placeholder={input.placeholder} name={input.name} id={input.name}
                                         onChange={event => handleFormChange(index, event)}
                                     />
                                 </div>
@@ -93,8 +98,9 @@ export const New = ({ inputs, title, db }) => {
                             return (
                                 <div className="formInput" key={index}>
                                     <label>{input.label}</label>
-                                    <input type={input.type} placeholder={input.placeholder} name={input.name}
-                                        defaultValue={data[0][input.name]} onChange={event => handleFormChange(index, event)}
+                                    <input type={input.type} placeholder={input.placeholder} name={input.name} id={input.name}
+                                        defaultValue={data[0][input.name]} 
+                                        onChange={event => handleFormChange(index, event)}                                        
                                     />
                                 </div>
                             )
