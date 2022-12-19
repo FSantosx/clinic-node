@@ -1,7 +1,7 @@
 import './datatableSchedules.scss'
 import { DataGrid } from '@mui/x-data-grid';
 import { scheduleCol } from '../../databasesourceS';
-import { useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 
 export const DatatableSchedules = ({ title }) => {
@@ -25,21 +25,38 @@ export const DatatableSchedules = ({ title }) => {
                     data.forEach((item) => {
                         list[item['id']] = item
                     })
-                    setPatients(list)                    
+                    setPatients(list)
                 })
                 .catch(err => console.trace(err))
         }, [])
         return patients;
     }
 
+    function RefreshPage() {
+        window.location.reload(true);
+    }
+
+    function Delete(e, id) {
+        console.log(title)
+        e.stopPropagation();
+        fetch(`http://localhost:3001/api/db/${title+'s'}/delete/${id}`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }).catch(err => console.trace(err));
+        RefreshPage()
+    }
+
     const pat = Patients();
 
     let data = Schedules();
 
-    for(let i=0; i<data.length;i++) {
-        data[ i ]['pname'] = pat[ data[ i ]['paciente'] ]['name']
+    for (let i = 0; i < data.length; i++) {
+        data[i]['pname'] = pat[data[i]['paciente']]['name']
     }
-    console.log(data)
+
     let collumn = scheduleCol;
 
     const actionCollum = [
@@ -47,14 +64,13 @@ export const DatatableSchedules = ({ title }) => {
             field: "ações"
             , headerName: "Ações"
             , width: "300"
-            , renderCell: () => {
+            , renderCell: (params) => {
                 return (
                     <div className='cellAction'>
-                        {/*<Link to={`/${title}/test`} style={{ textDecoration: "none" }}>
-                            <div className='viewButton'>Visualizar</div>
-                        </Link>*/}
-                        <div className='deleteButton'>Deletar</div>
-                        <div className='editButton'>Editar</div>
+                        <button className='deleteButton' onClick={(e) => Delete(e, params.row.id)}>Deletar</button>
+                        <Link to={`/${title}/new/${params.row.id}`} style={{ textDecoration: "none" }} >
+                            <button className='editButton'>Editar</button>
+                        </Link>
                     </div>
                 )
             }

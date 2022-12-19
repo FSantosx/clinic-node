@@ -25,6 +25,7 @@ export const New = ({ inputs, title, db }) => {
     const submit = (e) => {
         e.preventDefault();
         Save(inputFields)
+        window.location.href = `/${db}`;
     }
 
     const handleFormChange = (index, event) => {

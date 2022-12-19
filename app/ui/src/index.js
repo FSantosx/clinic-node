@@ -33,25 +33,30 @@ root.render(
                         <Route index element={<List title="doctors" />} />
                         <Route path=':id' element={<Single />} />
                         <Route path='new' element={<New inputs={doctorInputs} title="Adicionar novo médico" db="doctors" />} />
+                        <Route path='new/:id' element={<New inputs={doctorInputs} title="Editar médico" db="doctors"/>} />
                     </Route>
                     <Route path='tech'>
                         <Route index element={<List title="tech" />} />
                         <Route path=':id' element={<Single />} />
                         <Route path='new' element={<New inputs={techInputs} title="Adicionar novo Técnico em Laboratório" db="tech"/>} />
+                        <Route path='new/:id' element={<New inputs={techInputs} title="Editar Técnico em Laboratório" db="tech"/>} />
                     </Route>
                     <Route path='patients'>
                         <Route index element={<List title="patients" />} />
                         <Route path=':id' element={<Single />} />
                         <Route path='new' element={<New inputs={patientInputs} title="Adicionar novo Paciente" db="patients"/>} />
+                        <Route path='new/:id' element={<New inputs={patientInputs} title="Editar paciente" db="patients"/>} />
                     </Route>
                     <Route path='recepcionists'>
                         <Route index element={<List title="recepcionists" />} />
                         <Route path=':id' element={<Single />} />
                         <Route path='new' element={<New inputs={recepInputs} title="Adicionar novo recepcionista" db="recepcionists"/>} />
+                        <Route path='new/:id' element={<New inputs={recepInputs} title="Editar recepcionista" db="recepcionists"/>} />
                     </Route>
                     <Route path="schedule">
                         <Route index element={<Schedule />} />
                         <Route path="new" element={<NewSchedule inputs={schedulesInputs} title="Adicionar novo Agendamento" db="schedule"/>} />
+                        <Route path='new/:id' element={<NewSchedule inputs={schedulesInputs} title="Editar agendamento" db="schedule"/>} />
                     </Route>
                 </Route>
             </Routes>

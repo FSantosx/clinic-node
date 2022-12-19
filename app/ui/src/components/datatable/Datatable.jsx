@@ -10,10 +10,8 @@ export const Datatable = ({ title }) => {
     var data = "";
     var collumn;
 
-    console.log(title)
-
-    const a=  "", 
-          b = "";;
+    const a = "",
+        b = "";;
 
     const Users = () => {
         const [users, setUsers] = useState([])
@@ -24,13 +22,13 @@ export const Datatable = ({ title }) => {
                     setUsers(data)
                 })
                 .catch(err => console.trace(err))
-        }, [a,b])
+        }, [a, b])
         return users;
     }
 
     const Patients = () => {
         const [patients, setPatients] = useState([])
-        data=""
+        data = ""
         useEffect(() => {
             fetch("http://localhost:3001/api/db/patients/list")
                 .then(response => response.json())
@@ -39,22 +37,22 @@ export const Datatable = ({ title }) => {
                     if (!data) RefreshPage()
                 })
                 .catch(err => console.trace(err))
-        }, [a,b])
+        }, [a, b])
         return patients;
     }
 
     const Doctors = () => {
         const [doctors, setDoctors] = useState([])
-        data=""
+        data = ""
         useEffect(() => {
             fetch("http://localhost:3001/api/db/doctors/list")
-            .then(response => response.json())
-            .then(dat => {
-                setDoctors(dat)
-                if (!data) RefreshPage()
-            })
-            .catch(err => console.trace(err))
-        }, [a,b])
+                .then(response => response.json())
+                .then(dat => {
+                    setDoctors(dat)
+                    if (!data) RefreshPage()
+                })
+                .catch(err => console.trace(err))
+        }, [a, b])
         return doctors;
     }
 
@@ -63,7 +61,7 @@ export const Datatable = ({ title }) => {
 
         useEffect(() => {
             fetch("http://localhost:3001/api/db/recepcionists/list").then(response => response.json()).then(data => setRecepcionists(data)).catch(err => console.trace(err))
-        }, [a,b])
+        }, [a, b])
         return recepcionists;
     }
 
@@ -72,10 +70,10 @@ export const Datatable = ({ title }) => {
 
         useEffect(() => {
             fetch("http://localhost:3001/api/db/tech/list").then(response => response.json()).then(data => setTech(data)).catch(err => console.trace(err))
-        }, [a,b])
+        }, [a, b])
         return tech;
     }
-    
+
     function RefreshPage() {
         window.location.reload(true);
     }
@@ -101,7 +99,7 @@ export const Datatable = ({ title }) => {
         case "patients":
             str = "paciente"
             data = Patients();
-            collumn = patientCol;            
+            collumn = patientCol;
             break;
         case "tech":
             str = "Tecnico em Laboratorio"
@@ -133,7 +131,12 @@ export const Datatable = ({ title }) => {
                         <Link to={`/${title}/${params.row.id}`} style={{ textDecoration: "none" }} >
                             <button className='viewButton'> Visualizar </button>
                         </Link>
-                        <button className='deleteButton' onClick={(e) => Delete(e, params.row.id)}>Deletar</button>
+                        <button className='deleteButton' onClick={
+                            (e) => {
+                                Delete(e, params.row.id)
+                                window.location.href = `/${title}`;
+                            }
+                        }>Deletar</button>
                         {/* <Link to={`/${title}/${params.row.id}`} style={{ textDecoration: "none" }} >
                             <button className='editButton'>Editar</button>
                         </Link> */}
@@ -142,7 +145,7 @@ export const Datatable = ({ title }) => {
             }
         }
     ]
-    
+
 
     return (
         <div className='datatable'>
