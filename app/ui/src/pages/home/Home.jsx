@@ -52,7 +52,7 @@ export const Home = () => {
     const doctors = Doctors()
     const gdata = []
     for (let d of doctors) {        
-        for(let i=0; i<d.last.length;i++){
+        for(let i=0; i<d?.last?.length;i++){
             let v = 0
             if(gdata[i] === undefined) {
                 gdata[i] = 0                
