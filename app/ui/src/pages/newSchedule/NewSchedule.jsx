@@ -50,7 +50,7 @@ export const NewSchedule = ({ inputs, title }) => {
     }
 
     const Save = (inputFields) => {
-        
+        console.log(inputFields)
         for (let i=0;i<inputFields.length;i++ ) {
             inputFields[i]['value'] = document.getElementById(inputFields[i]['name']).value
         }
@@ -60,7 +60,7 @@ export const NewSchedule = ({ inputs, title }) => {
 
         let payload = { id: '', formData: inputFields }
         if (document.getElementById('rid').value) {
-            payload.id = document.getElementById('rid').value
+            payload.id = document.getElementById('rid').value + ""
         }
 
         fetch(`http://localhost:3001/api/db/schedules/create`, {
@@ -129,7 +129,11 @@ export const NewSchedule = ({ inputs, title }) => {
                         return (
                             <div className="formInput" key={input.id}>
                                 <label>{input.label}</label>
-                                <input name={input.name} type={input.type} placeholder={input.placeholder} onChange={event => handleFormChange(index, event)} />
+                                <input name={input.name} 
+                                type={input.type} 
+                                id={input.name}
+                                placeholder={input.placeholder} 
+                                onChange={event => handleFormChange(index, event)} />
                             </div>
                         )
                     })}
@@ -144,7 +148,7 @@ export const NewSchedule = ({ inputs, title }) => {
     if (isLoading) return ('Loading ...')
     if (error) return 'err'
         
-    console.log(data)
+    // console.log(data)
     const editData = <div className='new'>
         <Sidebar />
         <div className="newContainer">
