@@ -11,7 +11,6 @@ export const New = ({ inputs, title, db }) => {
     const Save = (inputFields) => {
         var obj = {}
         obj = { id: document.getElementById('rid').value, formData: inputFields }
-        console.log(obj)
         fetch(`http://localhost:3001/api/db/${db}/create`, {
             method: 'POST',
             headers: {

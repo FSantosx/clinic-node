@@ -37,7 +37,7 @@ export const DatatableSchedules = ({ title }) => {
     }
 
     function Delete(e, id) {
-        console.log(title)
+        // console.log(title)
         e.stopPropagation();
         fetch(`http://localhost:3001/api/db/${title+'s'}/delete/${id}`, {
             method: 'GET',

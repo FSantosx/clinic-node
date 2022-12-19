@@ -5,7 +5,7 @@ route.post('/', async (req, res) => {
     try {   
         const { name, type, email, pass, birthday, active } = req.body
         const user = { name, type, email, pass, birthday, active };
-        console.log(user)
+        // console.log(user)
 
         for (let [key, value] of Object.entries(user)){
             if(value == undefined){

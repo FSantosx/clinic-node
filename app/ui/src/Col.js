@@ -41,7 +41,7 @@ export const recepcionistCol = [
         field: 'recepcionist', headerName: 'Recepcionista', width: 230, renderCell: (params) => {
             return (
                 <div className="Cell">
-                    {params.row.recepcionist}
+                    {params.row.name}
                 </div>
             )
         }
