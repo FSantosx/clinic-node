@@ -17,8 +17,7 @@ export const NewSchedule = ({ inputs, title }) => {
         id = href.split('/')[len - 1]
     }
 
-    const { isLoading, error, data } = useFetch(`http://localhost:3001/api/db/schedules/get/${id}`);
-
+    
     const [inputFields, setInputFields] = useState([...inputs])
 
     const Patients = () => {
@@ -51,11 +50,18 @@ export const NewSchedule = ({ inputs, title }) => {
     }
 
     const Save = (inputFields) => {
-        inputFields.push({ id: 3, name: 'paciente', value: document.getElementById('paciente').value })
-        inputFields.push({ id: 4, name: 'status', value: document.getElementById('status').value })
+        
+        for (let i=0;i<inputFields.length;i++ ) {
+            inputFields[i]['value'] = document.getElementById(inputFields[i]['name']).value
+        }
+        
+        inputFields.push({ id: 2, name: 'paciente', value: document.getElementById('paciente').value })
+        inputFields.push({ id: 3, name: 'status', value: document.getElementById('status').value })
 
         let payload = { id: '', formData: inputFields }
-        console.log(payload)
+        if (document.getElementById('rid').value) {
+            payload.id = document.getElementById('rid').value
+        }
 
         fetch(`http://localhost:3001/api/db/schedules/create`, {
             method: 'POST',
@@ -68,7 +74,7 @@ export const NewSchedule = ({ inputs, title }) => {
     }
 
     const submit = (e) => {
-        e.preventDefault();
+        e.preventDefault();        
         console.log(JSON.stringify(inputFields))
         Save(inputFields)
         document.location.href = `/schedule`
@@ -78,13 +84,18 @@ export const NewSchedule = ({ inputs, title }) => {
         let data = [...inputs];
         data[index]["value"] = event.target.value;
         setInputFields(data);
+        console.log(inputFields)
     }
+
+    console.log(inputFields)
 
     const pat = Patients();
     let Data = Schedules();
-
-    for (let i = 0; i < Data.length; i++) {
-        Data[i]['pname'] = pat[Data[i]['paciente']]['name']
+    
+    if (pat) {
+        for (let i = 0; i < Data.length; i++) {
+            Data[i]['pname'] = pat[Data[i]['paciente']]['name']
+        }    
     }
 
     const newData = <div className='new'>
@@ -102,35 +113,38 @@ export const NewSchedule = ({ inputs, title }) => {
                             {
                                 Object.values(pat).map((p) => {
                                     return (
-                                        <option value={p.id}>{p.name}</option>
+                                        <option key={p.id} value={p.id}>{p.name}</option>
                                     )
                                 })
                             }
                         </select>
                         <label>Status</label>
                         <select name="status" id="status">
-                            <option value="agendado" selected>agendado</option>
-                            <option value="desistencia">desistencia</option>
-                            <option value="remarcado">remarcado</option>
+                            <option key="agendado" value="agendado">agendado</option>
+                            <option key="desistencia" value="desistencia">desistencia</option>
+                            <option key="remarcado" value="remarcado">remarcado</option>
                         </select>
                     </div>
                     {inputs.map((input, index) => {
                         return (
                             <div className="formInput" key={input.id}>
                                 <label>{input.label}</label>
-                                <input type={input.type} placeholder={input.placeholder} onChange={event => handleFormChange(index, event)} />
+                                <input name={input.name} type={input.type} placeholder={input.placeholder} onChange={event => handleFormChange(index, event)} />
                             </div>
                         )
                     })}
+                    <input type='hidden' name='rid' id='rid' value="" />
                     <button onClick={submit}>Salvar Agendamento</button>
                 </div>
             </form>
         </div>
     </div>;
 
-    if (isLoading) return "Loading ..."
-    if (error) return "Error!"
-
+    const { isLoading, error, data } = useFetch(`http://localhost:3001/api/db/schedules/get/${id}`);
+    if (isLoading) return ('Loading ...')
+    if (error) return 'err'
+        
+    console.log(data)
     const editData = <div className='new'>
         <Sidebar />
         <div className="newContainer">
@@ -142,12 +156,18 @@ export const NewSchedule = ({ inputs, title }) => {
                 <div className="bottom">
                     <div className="formInput">
                         <label>Paciente</label>
-                        <select name="paciente" id="paciente">
-                            <option defaultValue={Data[0].pname}>{Data[0].pname}</option>
+                        <select defaultValue={parseInt(data[0].paciente)} name="paciente" id="paciente">
+                            {
+                                Object.values(pat).map((p) => {
+                                    return (
+                                        <option key={p.id} value={p.id}>{p.name}</option>
+                                    )
+                                })
+                            }
                         </select>
                         <label>Status</label>
-                        <select name="status" id="status">
-                            <option value="agendado" selected>agendado</option>
+                        <select defaultValue={data[0].status} name="status" id="status">
+                            <option value="agendado">agendado</option>
                             <option value="desistencia">desistencia</option>
                             <option value="remarcado">remarcado</option>
                         </select>
@@ -157,21 +177,28 @@ export const NewSchedule = ({ inputs, title }) => {
                             <div className="formInput" key={input.id}>
                                 <label>{input.label}</label>
                                 <input type={input.type}
+                                    key={input.name}
+                                    id={input.name}
+                                    name={input.name}
                                     placeholder={input.placeholder}
                                     onChange={event => handleFormChange(index, event)}
-                                    defaultValue={data}
+                                    onInput={event => handleFormChange(index, event)}
+                                    defaultValue={data[0][input.name]}
                                 />
                             </div>
                         )
                     })}
-                    <input type='hidden' name='rid' id='rid' defaultValue={Data[0].id} />
+                    <input type='hidden' name='rid' id='rid' defaultValue={data[0].id} />
                     <button onClick={submit}>Salvar Agendamento</button>
                 </div>
             </form>
         </div>
     </div>
-
+    
+    
+    
     return (
-        len === 6 ? editData : newData
+       len === 6 ? editData : newData       
+       
     )
 }

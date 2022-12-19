@@ -53,8 +53,10 @@ export const DatatableSchedules = ({ title }) => {
 
     let data = Schedules();
 
-    for (let i = 0; i < data.length; i++) {
-        data[i]['pname'] = pat[data[i]['paciente']]['name']
+    if (data) {
+        for (let i = 0; i < data.length; i++) {
+            data[i]['pname'] = pat[data[i]['paciente']]['name']
+        }
     }
 
     let collumn = scheduleCol;

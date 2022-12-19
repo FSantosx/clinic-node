@@ -1,8 +1,4 @@
 {
-    "id": 1,
-    "name": "Cátia Schoederer",
-    "age": 20,
-    "status": "active",
-    "cpf": "456.542.213-45",
-    "last": [0, 1, 2, 0, 0, 0]
+    "id": "1",
+    "tel": "1145648798"
 }
